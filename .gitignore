@@ -1,0 +1,5 @@
+dist
+node_modules
+npm*.log
+npm-debug.log.446991756
+yarn-error.log

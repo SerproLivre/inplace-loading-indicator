@@ -1,0 +1,64 @@
+{
+  "name": "inplace-loading-indicator",
+  "version": "1.0.0",
+  "description": "Angular Inplace Loading Indicator",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest --watchAll",
+    "build": "webpack --progress",
+    "lint": "tslint --config tslint.json 'src/**/*.ts'",
+    "prepublish": "npm run lint && npm run compile",
+    "ci": "jest --coverage",
+    "compile": "rimraf dist && ngc -p src/tsconfig.aot.json && rimraf dist/node_modules && webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SerproLivre/inplace-loading-indicator.git"
+  },
+  "keywords": [
+    "angular",
+    "loading",
+    "indicator",
+    "progress",
+    "indicator"
+  ],
+  "author": "Abner Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SerproLivre/inplace-loading-indicator/issues"
+  },
+  "homepage": "https://github.com/SerproLivre/inplace-loading-indicator#readme",
+  "dependencies": {
+    "ts-node": "^3.0.2"
+  },
+  "peerDependencies": {
+    "@angular/common": "^2.3.0",
+    "@angular/core": "^2.3.0",
+    "@angular/platform-browser": "^2.3.0",
+    "rxjs": "5.0.1"
+  },
+  "devDependencies": {
+    "@angular/common": "^4.0.2",
+    "@angular/compiler": "^4.0.2",
+    "@angular/compiler-cli": "^4.0.2",
+    "@angular/core": "^4.0.2",
+    "@angular/platform-browser": "^4.0.2",
+    "@ngtools/webpack": "^1.3.0",
+    "@types/node": "^7.0.13",
+    "@types/webpack": "^2.2.15",
+    "awesome-typescript-loader": "^3.1.2",
+    "codelyzer": "^2.1.1",
+    "file-loader": "^0.11.1",
+    "image-webpack-loader": "^3.3.0",
+    "jest": "^19.0.2",
+    "rimraf": "^2.6.1",
+    "rxjs": "^5.0.1",
+    "svg-url-loader": "^2.0.2",
+    "ts-jest": "^19.0.10",
+    "tslint": "~4.5",
+    "typescript": "2.2",
+    "webpack": "^2.4.1",
+    "webpack-node-externals": "^1.5.4",
+    "zone.js": "0.8.5"
+  }
+}
