@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/observable/of';
-import { LoadingImageAssets } from './loading-image-assets.service';
+import { LoadingImageAssets } from './services/loading-image-assets.service';
 //import { Renderer } from '@angular/core';
 
 @Component({

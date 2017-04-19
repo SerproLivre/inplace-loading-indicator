@@ -36,7 +36,7 @@ export function getBuildConfig(outputFileName: string, libraryName: string) {
         }, {
             test: /\.svg$/i,
             loaders: [
-                'svg-url-loader'
+                'raw-loader'
             ]
         }
       ]
