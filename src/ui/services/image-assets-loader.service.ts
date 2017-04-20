@@ -6,6 +6,10 @@ export interface NgxsAssetsResourcesUrls {
   [name: string]: string;
 }
 
+declare var process;
+
+declare var require;
+
 let EMBEDDED_IMAGE_RESOURCES: NgxsAssetsResourcesUrls = {};
 
 if (process && process.env && process.env.NODE_ENV === 'test') {
