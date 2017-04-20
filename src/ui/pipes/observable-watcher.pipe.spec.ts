@@ -1,4 +1,4 @@
-import { ObservableWatcherPipe } from "./observable-watcher.pipe";
+import { ObservableWatcherPipe } from './observable-watcher.pipe';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
@@ -11,7 +11,7 @@ describe(ObservableWatcherPipe.name, () => {
 
 
     it('creates a watchedObservable', () => {
-        let watchedObservable = watcherPipe.transform(Observable.of(2));
+        const watchedObservable = watcherPipe.transform(Observable.of(2));
         expect(watchedObservable.watcher).toBeDefined();
     });
 

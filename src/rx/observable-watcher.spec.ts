@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
-import { ObservableWatcher, ObservableWatched } from "./observable-watcher";
+import { ObservableWatcher, ObservableWatched } from './observable-watcher';
 
 describe(ObservableWatcher.name, () => {
     let observable: ObservableWatched<any>;
@@ -14,7 +14,7 @@ describe(ObservableWatcher.name, () => {
 
     it('has processing false before subscription', () => {
         expect(observable.watcher.processing).toBeFalsy();
-    })
+    });
 
     it('changes processing to true after subscription to the watched observable', (done) => {
         observable.subscribe(() => {

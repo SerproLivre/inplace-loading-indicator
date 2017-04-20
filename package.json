@@ -1,11 +1,11 @@
 {
-  "name": "inplace-loading-indicator",
+  "name": "ngx-serpro",
   "version": "1.0.0",
-  "description": "Angular Inplace Loading Indicator",
+  "description": "NGxSerpro Components => { where x >= 2 }",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "ci": "jest --coverage",
+    "test": "cross-env NODE_ENV=test UNIT_TESTS=true jest --watchAll",
+    "ci": "cross-env NODE_ENV=test jest --coverage",
     "build": "webpack --progress",
     "lint": "tslint --config tslint.json 'src/**/*.ts'",
     "prepublish": "npm run lint && npm run compile",
@@ -50,6 +50,7 @@
     "@types/webpack": "^2.2.15",
     "awesome-typescript-loader": "^3.1.2",
     "codelyzer": "^2.1.1",
+    "cross-env": "^4.0.0",
     "file-loader": "^0.11.1",
     "image-webpack-loader": "^3.3.0",
     "jest": "^19.0.2",

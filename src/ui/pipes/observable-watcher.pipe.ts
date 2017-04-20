@@ -1,13 +1,14 @@
-import {  Pipe, PipeTransform } from "@angular/core";
+import {  Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ObservableWatcher, ObservableWatched } from '../helpers/observable-watcher';
+import { ObservableWatcher, ObservableWatched } from '../../rx/index';
 
 @Pipe({
     // tslint:disable-next-line:pipe-naming
-    name: 'observableWatcher',
+    name: 'observableWatcher'
 })
 export class ObservableWatcherPipe implements PipeTransform {
     transform(value: Observable<any>,  ...args: any[]): ObservableWatched<any> {
-        return ObservableWatcher.watch(value);
+        ObservableWatcher.watch(value);
+        return <ObservableWatched<any>> value;
     }
 }

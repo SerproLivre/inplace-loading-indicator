@@ -1,25 +1,8 @@
 // see issue https://github.com/AngularClass/angular2-webpack-starter/issues/709
 // import 'core-js/es6/promise';
 
-console.log('RUNNING HERER --------------------------------------');
-
-var fs = require('fs');
-var path = require('path');
-var requireHacker = require('require-hacker');
-
-requireHacker.hook('svg', path => `module.exports = '${path}'`);
-
-require.extensions['.svg'] = function(module, filepath) {
-  console.log('REQUIRE SVG __________________________________________');
-
-  // SEE https://github.com/chrismendis/inline-svg-register
-  return 'module.exports = ' + JSON.stringify(path.basename(filepath)) + ';';
-
-}
-
-let ball = require('../src/icons/ball.svg');
-
-console.log('BAL:::: ', ball);
+const fs = require('fs');
+const path = require('path');
 
 import 'core-js/es7/reflect';
 
@@ -33,6 +16,7 @@ import 'zone.js/dist/sync-test';
 import 'zone.js/dist/jasmine-patch';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
+
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting

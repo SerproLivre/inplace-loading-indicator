@@ -1,0 +1,1 @@
+{"summaries":[{"symbol":{"__symbol":0,"members":[]},"metadata":{"__symbolic":"class","members":{"getAssetByName":[{"__symbolic":"method"}],"getDefaultAsset":[{"__symbolic":"method"}]}}}],"symbols":[{"__symbol":0,"name":"ImageAssetsLoaderMock","filePath":"/home/80129498572/git/serpro/npm-package/inplace-loading-indicator/test/mocks/image-assets-loader.mock.d.ts"}]}
