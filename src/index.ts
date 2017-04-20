@@ -1,22 +1,25 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { LoadingImageAssets } from './services/loading-image-assets.service';
+import { ImageAssetsLoader } from './services/image-assets-loader.service';
 import { InplaceLoadingComponent } from './inplace-loading.component';
+import { ObservableWatcherPipe } from "./pipes/observable-watcher.pipe";
 
 export const INPLACE_LOADING_PROVIDERS = [
     {
-        provide: LoadingImageAssets,
-        useClass: LoadingImageAssets
+        provide: ImageAssetsLoader,
+        useClass: ImageAssetsLoader
     }
 ];
 
 @NgModule({
     declarations: [
-        InplaceLoadingComponent
-    ],
-    entryComponents: [
-        InplaceLoadingComponent
+        InplaceLoadingComponent,
+        ObservableWatcherPipe
     ],
     exports: [
+        InplaceLoadingComponent,
+        ObservableWatcherPipe
+    ],
+    entryComponents: [
         InplaceLoadingComponent
     ]
 })

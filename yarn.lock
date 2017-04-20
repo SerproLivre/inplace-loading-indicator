@@ -22,6 +22,10 @@
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.0.2.tgz#195153f8623b59f07c30b3b8954e14842c3959c3"
 
+"@angular/platform-browser-dynamic@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.0.2.tgz#5a26f9a3e9f7eaf3cc7c02836cfae2e88cf1862f"
+
 "@angular/platform-browser@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.0.2.tgz#bce01526917a5b49606fc7e81600af85b15846ea"
@@ -40,6 +44,10 @@
     loader-utils "^1.0.2"
     magic-string "^0.19.0"
     source-map "^0.5.6"
+
+"@types/jasmine@^2.5.47":
+  version "2.5.47"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.47.tgz#bbba9bcf0e95e7890c6f4a47394e8bacaa960eb6"
 
 "@types/node@*", "@types/node@^7.0.13":
   version "7.0.13"
@@ -386,7 +394,7 @@ babel-register@^6.24.1:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@^6.22.0:
+babel-runtime@^6.22.0, babel-runtime@^6.6.1:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -3611,6 +3619,13 @@ request@^2.79.0, request@^2.81.0:
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
+
+require-hacker@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/require-hacker/-/require-hacker-3.0.0.tgz#ec5947e5ba2e2f5b88d738d291364442ef70bfe0"
+  dependencies:
+    babel-runtime "^6.6.1"
+    colors "^1.1.2"
 
 require-main-filename@^1.0.1:
   version "1.0.1"
