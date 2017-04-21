@@ -28,6 +28,7 @@ export class SvgSpinnerComponent {
 
   set width(value: number) {
     // TODO: validate dimension  using parseCssDimension -- // require('parse-css-dimension');
+    // AND https://www.npmjs.com/package/parse-absolute-css-unit to parse units to pixel
     this._width = value;
     this.ref.markForCheck();
   }
