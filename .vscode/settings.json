@@ -1,11 +1,12 @@
 {
-    "vsicons.presets.angular": false,
+
     "files.exclude": {
-        "**/.git": false,
-        "**/.svn": false,
-        "**/.hg": false,
-        "**/CVS": false,
-        "**/.DS_Store": false,
-        "node_modules": false
-    }
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "node_modules": true
+    },
+    "files.trimTrailingWhitespace": true
 }
