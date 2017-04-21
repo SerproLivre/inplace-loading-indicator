@@ -78,6 +78,7 @@
       "src/**/*.ts",
       "!src/index.ts",
       "!src/**/*.svg",
+      "!src/**/*.sketch.ts",
       "!src/**/index.ts",
       "!src/**/*.module.ts",
       "!**/node_modules"
