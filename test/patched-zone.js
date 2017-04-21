@@ -1,4 +1,4 @@
-// ADDED
+// ADDED - Needed util https://github.com/angular/zone.js/pull/711 get merged
 // function canPatchViaPropertyDescriptor() {
 //     if ((isBrowser || isMix) && !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'onclick') &&
 //         typeof Element !== 'undefined') {
