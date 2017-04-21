@@ -1,6 +1,15 @@
+
+export function isIntegrationTestEnabled() {
+  return (process.env.INTEGRATION_TESTS || (process.env.UNIT_TESTS === undefined && process.env.INTEGRATION_TESTS === undefined));
+}
+
+export function isUnitTestEnabled() {
+  return (process.env.INTEGRATION_TESTS || (process.env.UNIT_TESTS === undefined && process.env.INTEGRATION_TESTS === undefined));
+}
+
 export function runUnitTests(fun: VoidFunction) {
   if (process && process.env) {
-    if (process.env.UNIT_TESTS || (process.env.UNIT_TESTS === undefined && process.env.INTEGRATION_TESTS === undefined)) {
+    if (isUnitTestEnabled()) {
       return fun;
     }
   } else {
@@ -11,7 +20,7 @@ export function runUnitTests(fun: VoidFunction) {
 
 export function runIntegrationTests(fun: VoidFunction) {
   if (process && process.env) {
-    if (process.env.INTEGRATION_TESTS || (process.env.UNIT_TESTS === undefined && process.env.INTEGRATION_TESTS === undefined)) {
+    if (isIntegrationTestEnabled()) {
       return fun;
     }
   } else {

@@ -17,6 +17,8 @@ import 'zone.js/dist/jasmine-patch';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 
+import { isIntegrationTestEnabled } from './helpers';
+
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
@@ -27,7 +29,7 @@ import { TestBed } from '@angular/core/testing';
 global['preparedTetsts'] = false;
 
 
-if (!global['preparedTetsts'] && ! process.env.UNIT_TESTS) {
+if (!global['preparedTetsts'] && isIntegrationTestEnabled()) {
   global['preparedTetsts'] = true;
 
   beforeEach(() => {
