@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -6,11 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
 import { InplaceLoadingComponent } from './inplace-loading.component';
-import { ImageAssetsLoaderMock } from '../../../test/mocks/image-assets-loader.mock';
 import { ChangeDetectorRefMock } from '../../../test/mocks/change-detector-ref.mock';
-import { DomSanitizerMock } from '../../../test/mocks/dom-sanitizer.mock';
 import { ObservableWatched } from '../../rx/index';
-import { ImageAssetsLoader } from '../services/image-assets-loader.service';
 import { runUnitTests, runIntegrationTests } from '../../../test/helpers';
 
 
@@ -63,11 +60,11 @@ describe('InplaceLoadingComponent', () => {
     @Component({
       selector: 'ngxs-not-used',
       template: `<ngxs-inplace-loading
-                        (afterLoad)="loadingFinished()" #loadingComp [observable]="observable">
-                 </ngxs-inplace-loading>`
+                        (afterLoad)="loadingFinished()" #loadingComp [observable]="observable">{{loadingText}}</ngxs-inplace-loading>`
     })
     class HostComponent {
       observable: Observable<any>;
+      loadingText = 'Processing...';
       @ViewChild('loadingComp') loadingComp: ElementRef;
 
       loadingFinished() {
@@ -84,46 +81,64 @@ describe('InplaceLoadingComponent', () => {
       fixture.autoDetectChanges();
     }));
 
-    it('display is "none" when observable is not running', () => {
-      fixture.componentInstance.observable = observable;
-      const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
-      expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
+    describe('Content Projection', () => {
+
+      it('projects content into the loading html', () => {
+        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        expect(elLoadingCmp.nativeElement.textContent).toEqual('Processing...');
+      });
+
+      it('updates element content if expression changes', () => {
+        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        expect(elLoadingCmp.nativeElement.textContent).toEqual('Processing...');
+        fixture.componentInstance.loadingText = 'ABC';
+        fixture.detectChanges();
+        expect(elLoadingCmp.nativeElement.textContent).toEqual('ABC');
+      });
     });
 
-    it('display is "inline-block" when observable is running', () => {
-      fixture.componentInstance.observable = observable;
-      fixture.detectChanges();
-      observable.subscribe(() => { });
-      observer.next(1);
-      fixture.detectChanges();
-      const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
-      expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
-    });
+    describe('display behavior', () => {
+      it('display is "none" when observable is not running', () => {
+        fixture.componentInstance.observable = observable;
+        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
+      });
+
+      it('display is "inline-block" when observable is running', () => {
+        fixture.componentInstance.observable = observable;
+        fixture.detectChanges();
+        observable.subscribe(() => { });
+        observer.next(1);
+        fixture.detectChanges();
+        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
+      });
 
 
-    it('display is "none" after observable completes', () => {
-      fixture.componentInstance.observable = observable;
-      fixture.detectChanges();
-      observable.subscribe(() => { });
-      fixture.detectChanges();
-      const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
-      expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
-      observer.complete();
-      fixture.detectChanges();
-      expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
-    });
+      it('display is "none" after observable completes', () => {
+        fixture.componentInstance.observable = observable;
+        fixture.detectChanges();
+        observable.subscribe(() => { });
+        fixture.detectChanges();
+        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
+        observer.complete();
+        fixture.detectChanges();
+        expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
+      });
 
-    it('emits afterLoad event', () => {
-      fixture.componentInstance.observable = observable;
-      fixture.detectChanges();
-      observable.subscribe(() => { });
+      it('emits afterLoad event', () => {
+        fixture.componentInstance.observable = observable;
+        fixture.detectChanges();
+        observable.subscribe(() => { });
 
-      fixture.componentInstance.loadingFinished = jasmine.createSpy('loadingFinished');
-      observer.complete();
-      fixture.detectChanges();
+        fixture.componentInstance.loadingFinished = jasmine.createSpy('loadingFinished');
+        observer.complete();
+        fixture.detectChanges();
 
-      expect(fixture.componentInstance.loadingFinished).toHaveBeenCalled();
+        expect(fixture.componentInstance.loadingFinished).toHaveBeenCalled();
 
+      });
     });
   }));
 });
