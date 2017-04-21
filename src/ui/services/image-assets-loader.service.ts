@@ -6,37 +6,30 @@ export interface NgxsAssetsResourcesUrls {
   [name: string]: string;
 }
 
-declare var process;
+import {
+  BALL_SVG,
+  BALLS_SVG,
+  BLUE_LOADING,
+  CLOCK_SVG,
+  HOUR_GLASS_SVG,
+  MAGNIFY_SVG,
+  ORANGE_LOADING_SVG,
+  ROLLING_SVG,
+  SQUARES_SVG
+} from '../../assets/icons/svg-icons';
 
-declare var require;
+export const EMBEDDED_IMAGE_RESOURCES: NgxsAssetsResourcesUrls = {
+  'ball': BALL_SVG,
+  'balls': BALLS_SVG,
+  'blue-loading': BLUE_LOADING,
+  'clock': CLOCK_SVG,
+  'hour-glass': HOUR_GLASS_SVG,
+  'magnify': MAGNIFY_SVG,
+  'orange-loading': ORANGE_LOADING_SVG,
+  'rolling': ROLLING_SVG,
+  'squares': SQUARES_SVG
+};
 
-let EMBEDDED_IMAGE_RESOURCES: NgxsAssetsResourcesUrls = {};
-
-if (process && process.env && process.env.NODE_ENV === 'test') {
-  EMBEDDED_IMAGE_RESOURCES = {
-    'ball': '../icons/ball.svg',
-    'balls': '../icons/balls.svg',
-    'blue-loading': '../icons/blue-loading.svg',
-    'clock': '../icons/clock.svg',
-    'hour-glass': '../icons/hour-glass.svg',
-    'magnify': '../icons/magnify.svg',
-    'orange-loading': '../icons/hour-glass.svg',
-    'rolling': '../icons/rolling.svg',
-    'squares': '../icons/squares.svg'
-  };
-} else {
-  EMBEDDED_IMAGE_RESOURCES = {
-    'ball': require('../../../assets/icons/ball.svg'),
-    'balls': require('../../../assets/icons/balls.svg'),
-    'blue-loading': require('../../../assets/icons/blue-loading.svg'),
-    'clock': require('../../../assets/icons/clock.svg'),
-    'hour-glass': require('../../../assets/icons/hour-glass.svg'),
-    'magnify': require('../../../assets/icons/magnify.svg'),
-    'orange-loading': require('../../../assets/icons/hour-glass.svg'),
-    'rolling': require('../../../assets/icons/rolling.svg'),
-    'squares': require('../../../assets/icons/squares.svg')
-  };
-}
 Object.keys(EMBEDDED_IMAGE_RESOURCES).forEach((name) => {
   EMBEDDED_IMAGE_RESOURCES[name] = svgAsEmbededResource(EMBEDDED_IMAGE_RESOURCES[name]);
 });
@@ -44,19 +37,45 @@ Object.keys(EMBEDDED_IMAGE_RESOURCES).forEach((name) => {
 
 export const DefaultLoadingImage = 'blue-loading';
 
+/**
+ * ImageAssetsLoader provides the icons which would be used in the loading indicator.
+ *
+ * @export
+ * @class ImageAssetsLoader
+ */
 @Injectable()
 export class ImageAssetsLoader {
 
   private resources: NgxsAssetsResourcesUrls = EMBEDDED_IMAGE_RESOURCES;
 
+  /**
+   * Creates an instance of ImageAssetsLoader.
+   *
+   * @memberOf ImageAssetsLoader
+   */
   constructor() {
   }
 
-  getAssetByName(name: string) {
+  /**
+   * Returns an icon asset by name
+   *
+   * @param {string} name
+   * @returns {string} the asset resource src or data
+   *
+   * @memberOf ImageAssetsLoader
+   */
+  getAssetByName(name: string): string {
     return this.resources[name];
   }
 
-  getDefaultAsset() {
+  /**
+   *
+   *
+   * @returns {string} the default asset resource src or data
+   *
+   * @memberOf ImageAssetsLoader
+   */
+  getDefaultAsset(): string {
     return this.resources[DefaultLoadingImage];
   }
 
