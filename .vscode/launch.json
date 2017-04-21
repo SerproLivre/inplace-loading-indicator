@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Tests With Debugger",
+      "name": "Debug Test",
       "type": "node",
       "request": "launch",
       "port": 5858,
@@ -15,9 +15,11 @@
       "runtimeArgs": [
         "--debug-brk",
         "./node_modules/.bin/jest",
-        "-i"
+        "-i",
+        "${file}"
       ],
-      "cwd": "${workspaceRoot}"
+      "cwd": "${workspaceRoot}",
+      "sourceMaps": true
     }
 
   ]
