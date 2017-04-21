@@ -4,7 +4,7 @@ export function isIntegrationTestEnabled() {
 }
 
 export function isUnitTestEnabled() {
-  return (process.env.INTEGRATION_TESTS || (process.env.UNIT_TESTS === undefined && process.env.INTEGRATION_TESTS === undefined));
+  return (process.env.UNIT_TESTS || (process.env.UNIT_TESTS === undefined && process.env.INTEGRATION_TESTS === undefined));
 }
 
 export function runUnitTests(fun: VoidFunction) {
