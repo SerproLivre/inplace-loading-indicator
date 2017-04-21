@@ -9,6 +9,13 @@ export interface ObservableWatched<T> extends Observable<T> {
   watcher: ObservableWatcher<T>;
 }
 
+/**
+ * ObservableWatcher allow to watch into a observable and so, know when it started and completed
+ *
+ * @export
+ * @class ObservableWatcher
+ * @template T
+ */
 export class ObservableWatcher<T> {
 
   processing = false;
@@ -25,11 +32,27 @@ export class ObservableWatcher<T> {
     }
   };
 
+  /**
+   * Watchs into an Observable
+   *
+   * @static
+   * @template U
+   * @param {Observable<U>} observable
+   * @returns {<ObservableWatched<U>>}
+   *
+   * @memberOf ObservableWatcher
+   */
   static watch<U>(observable: Observable<U>) {
     new ObservableWatcher<U>(observable);
     return <ObservableWatched<U>>observable;
   }
 
+  /**
+   * Creates an instance of ObservableWatcher.
+   * @param {Observable<any>} originObservable
+   *
+   * @memberOf ObservableWatcher
+   */
   constructor(originObservable: Observable<any>) {
     if (!originObservable) {
       throw new Error('You should pass an Observable!!');
@@ -37,13 +60,15 @@ export class ObservableWatcher<T> {
     this.configureObservable(originObservable);
   }
 
+  /**
+   * Enables to write console.log into output
+   *
+   * @param {boolean} debug
+   *
+   * @memberOf ObservableWatcher
+   */
   setDebug(debug: boolean) {
     this._debug = debug;
-  }
-
-
-  get(): ObservableWatched<T> {
-    return this.observable;
   }
 
   private completedHandler() {
