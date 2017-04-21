@@ -3,6 +3,8 @@ import { ImageAssetsLoader } from './services/image-assets-loader.service';
 import { NgxSerproRxModule } from '../rx/rx.module';
 import { InplaceLoadingComponent } from './components/inplace-loading.component';
 import { ObservableWatcherPipe } from './pipes/observable-watcher.pipe';
+import { SvgSpinnerComponent } from './components/svg-spinner.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 export const NGX_SERPRO_UI_PROVIDERS = [
@@ -11,11 +13,12 @@ export const NGX_SERPRO_UI_PROVIDERS = [
 
 
 @NgModule({
-  declarations: [InplaceLoadingComponent, ObservableWatcherPipe],
-  entryComponents: [InplaceLoadingComponent],
-  exports: [InplaceLoadingComponent],
+  declarations: [InplaceLoadingComponent, SvgSpinnerComponent, ObservableWatcherPipe],
+  entryComponents: [InplaceLoadingComponent, SvgSpinnerComponent],
+  exports: [InplaceLoadingComponent, SvgSpinnerComponent],
   imports: [
-    NgxSerproRxModule
+    NgxSerproRxModule,
+    BrowserModule
   ]
 })
 export class NgxSerproUiModule {

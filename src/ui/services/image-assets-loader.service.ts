@@ -69,6 +69,18 @@ export class ImageAssetsLoader {
   }
 
   /**
+   * Returns true if there is an asset with a given name
+   *
+   * @param {string} name
+   * @returns {boolean}
+   *
+   * @memberOf ImageAssetsLoader
+   */
+  hasAsset(name: string): boolean {
+    return Object.keys(this.resources).indexOf(name) !== -1;
+  }
+
+  /**
    *
    *
    * @returns {string} the default asset resource src or data

@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { By, DomSanitizer } from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
@@ -16,17 +16,13 @@ import { runUnitTests, runIntegrationTests } from '../../../test/helpers';
 
 describe('InplaceLoadingComponent', () => {
 
-  let sanitizerMock: DomSanitizer;
-  let imageAssetsLoaderMock: ImageAssetsLoaderMock;
   let changeDetectorRefMock: ChangeDetectorRef;
   let inplaceLoadingComponent: InplaceLoadingComponent;
   let observable: ObservableWatched<any>;
   let observer: Observer<any>;
   beforeEach(() => {
-    imageAssetsLoaderMock = new ImageAssetsLoaderMock();
     changeDetectorRefMock = <any>new ChangeDetectorRefMock();
-    sanitizerMock = <any>new DomSanitizerMock();
-    inplaceLoadingComponent = new InplaceLoadingComponent(<any>imageAssetsLoaderMock, <any>changeDetectorRefMock, <any>sanitizerMock);
+    inplaceLoadingComponent = new InplaceLoadingComponent(<any>changeDetectorRefMock);
     observable = <ObservableWatched<any>>(new Observable((_observer) => {
       observer = _observer;
     }));
@@ -82,24 +78,19 @@ describe('InplaceLoadingComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [HostComponent, InplaceLoadingComponent],
-        providers: [
-          { provide: ImageAssetsLoader, useValue: imageAssetsLoaderMock }
-        ]
+        declarations: [HostComponent, InplaceLoadingComponent]
       }).compileComponents();
       fixture = TestBed.createComponent(HostComponent);
       fixture.autoDetectChanges();
     }));
 
     it('display is "none" when observable is not running', () => {
-      imageAssetsLoaderMock.getDefaultAsset = jasmine.createSpy('getDefaultAsset').and.returnValue('svg-xpto');
       fixture.componentInstance.observable = observable;
       const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
       expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
     });
 
     it('display is "inline-block" when observable is running', () => {
-      imageAssetsLoaderMock.getDefaultAsset = jasmine.createSpy('getDefaultAsset').and.returnValue('svg-xpto');
       fixture.componentInstance.observable = observable;
       fixture.detectChanges();
       observable.subscribe(() => { });
@@ -111,7 +102,6 @@ describe('InplaceLoadingComponent', () => {
 
 
     it('display is "none" after observable completes', () => {
-      imageAssetsLoaderMock.getDefaultAsset = jasmine.createSpy('getDefaultAsset').and.returnValue('svg-xpto');
       fixture.componentInstance.observable = observable;
       fixture.detectChanges();
       observable.subscribe(() => { });

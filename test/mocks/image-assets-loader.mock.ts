@@ -7,4 +7,7 @@ export class ImageAssetsLoaderMock {
 
   getDefaultAsset() {
   }
+
+  hasAsset(name: string) {
+  }
 }
