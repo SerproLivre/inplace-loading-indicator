@@ -66,9 +66,9 @@ describe('InplaceLoadingComponent', () => {
 
     @Component({
       selector: 'ngxs-not-used',
-      template: `<serpro-inplace-loading
+      template: `<ngxs-inplace-loading
                         (afterLoad)="loadingFinished()" #loadingComp [observable]="observable">
-                 </serpro-inplace-loading>`
+                 </ngxs-inplace-loading>`
     })
     class HostComponent {
       observable: Observable<any>;
@@ -94,8 +94,8 @@ describe('InplaceLoadingComponent', () => {
     it('display is "none" when observable is not running', () => {
       imageAssetsLoaderMock.getDefaultAsset = jasmine.createSpy('getDefaultAsset').and.returnValue('svg-xpto');
       fixture.componentInstance.observable = observable;
-      const el = fixture.debugElement.query(By.css('serpro-inplace-loading img'));
-      expect(el.componentInstance.style).toEqual('none');
+      const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+      expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
     });
 
     it('display is "inline-block" when observable is running', () => {
@@ -104,8 +104,9 @@ describe('InplaceLoadingComponent', () => {
       fixture.detectChanges();
       observable.subscribe(() => { });
       observer.next(1);
-      const el = fixture.debugElement.query(By.css('serpro-inplace-loading img'));
-      expect(el.componentInstance.style).toEqual('inline-block');
+      fixture.detectChanges();
+      const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+      expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
     });
 
 
@@ -115,10 +116,11 @@ describe('InplaceLoadingComponent', () => {
       fixture.detectChanges();
       observable.subscribe(() => { });
       fixture.detectChanges();
-      const el = fixture.debugElement.query(By.css('serpro-inplace-loading img'));
-      expect(el.componentInstance.style).toEqual('inline-block');
+      const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+      expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
       observer.complete();
-      expect(el.componentInstance.style).toEqual('none');
+      fixture.detectChanges();
+      expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
     });
 
     it('emits afterLoad event', () => {
