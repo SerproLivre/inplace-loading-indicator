@@ -11,15 +11,19 @@
       "port": 5858,
       "address": "localhost",
       "stopOnEntry": false,
+      "protocol": "legacy",
       "runtimeExecutable": null,
       "runtimeArgs": [
         "--debug-brk",
         "./node_modules/.bin/jest",
         "-i",
+        "--watchAll",
+        "--findRelatedTests",
         "${file}"
       ],
       "cwd": "${workspaceRoot}",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "console": "integratedTerminal"
     }
 
   ]
