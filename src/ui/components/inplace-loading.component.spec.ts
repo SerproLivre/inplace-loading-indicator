@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -58,9 +58,9 @@ describe('InplaceLoadingComponent', () => {
 
 
     @Component({
-      selector: 'ngxs-not-used',
-      template: `<ngxs-inplace-loading
-                        (afterLoad)="loadingFinished()" #loadingComp [observable]="observable">{{loadingText}}</ngxs-inplace-loading>`
+      selector: 'pratico-not-used',
+      template: `<pratico-inplace-loading
+                        (afterLoad)="loadingFinished()" #loadingComp [observable]="observable">{{loadingText}}</pratico-inplace-loading>`
     })
     class HostComponent {
       observable: Observable<any>;
@@ -84,12 +84,12 @@ describe('InplaceLoadingComponent', () => {
     describe('Content Projection', () => {
 
       it('projects content into the loading html', () => {
-        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
         expect(elLoadingCmp.nativeElement.textContent).toEqual('Processing...');
       });
 
       it('updates element content if expression changes', () => {
-        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
         expect(elLoadingCmp.nativeElement.textContent).toEqual('Processing...');
         fixture.componentInstance.loadingText = 'ABC';
         fixture.detectChanges();
@@ -100,7 +100,7 @@ describe('InplaceLoadingComponent', () => {
     describe('display behavior', () => {
       it('display is "none" when observable is not running', () => {
         fixture.componentInstance.observable = observable;
-        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
         expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
       });
 
@@ -110,7 +110,7 @@ describe('InplaceLoadingComponent', () => {
         observable.subscribe(() => { });
         observer.next(1);
         fixture.detectChanges();
-        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
         expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
       });
 
@@ -120,7 +120,7 @@ describe('InplaceLoadingComponent', () => {
         fixture.detectChanges();
         observable.subscribe(() => { });
         fixture.detectChanges();
-        const elLoadingCmp = fixture.debugElement.query(By.css('ngxs-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
         expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
         observer.complete();
         fixture.detectChanges();

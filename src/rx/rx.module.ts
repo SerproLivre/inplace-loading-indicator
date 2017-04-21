@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ObservableWatcher } from './observable-watcher';
 
-export const NGX_SERPRO_RX_PROVIDERS = [
+export const PRATICAL_RX_PROVIDERS = [
   ObservableWatcher
 ];
 
@@ -11,11 +11,11 @@ export const NGX_SERPRO_RX_PROVIDERS = [
   entryComponents: [],
   exports: []
 })
-export class NgxSerproRxModule {
+export class PraticoRxModule {
   static forRoot(): ModuleWithProviders {
         return {
-            ngModule: NgxSerproRxModule,
-            providers: NGX_SERPRO_RX_PROVIDERS
+            ngModule: PraticoRxModule,
+            providers: PRATICAL_RX_PROVIDERS
         };
     }
 }

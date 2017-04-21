@@ -1,2 +1,2 @@
-export { NgxSerproRxModule } from './rx/rx.module';
-export { NgxSerproUiModule } from './ui/ui.module';
+export { PraticoRxModule } from './rx/rx.module';
+export { PraticoUiModule } from './ui/ui.module';

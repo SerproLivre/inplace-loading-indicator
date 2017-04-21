@@ -98,8 +98,8 @@
       "check-type"
     ],
 
-    "directive-selector": [true, "attribute", "ngxs", "camelCase"],
-    "component-selector": [true, "element", "ngxs", "kebab-case"],
+    "directive-selector": [true, "attribute", "pratico", "camelCase"],
+    "component-selector": [true, "element", "pratico", "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,

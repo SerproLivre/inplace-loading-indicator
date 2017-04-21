@@ -1,31 +1,32 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ImageAssetsLoader } from './services/image-assets-loader.service';
-import { NgxSerproRxModule } from '../rx/rx.module';
+import { PraticoRxModule } from '../rx/rx.module';
 import { InplaceLoadingComponent } from './components/inplace-loading.component';
 import { ObservableWatcherPipe } from './pipes/observable-watcher.pipe';
 import { SvgSpinnerComponent } from './components/svg-spinner.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppSplashComponent } from './components/app-splash.component';
 
 
-export const NGX_SERPRO_UI_PROVIDERS = [
+export const PRATICAL_UI_PROVIDERS = [
   ImageAssetsLoader
 ];
 
 
 @NgModule({
-  declarations: [InplaceLoadingComponent, SvgSpinnerComponent, ObservableWatcherPipe],
-  entryComponents: [InplaceLoadingComponent, SvgSpinnerComponent],
-  exports: [InplaceLoadingComponent, SvgSpinnerComponent],
+  declarations: [AppSplashComponent, InplaceLoadingComponent, SvgSpinnerComponent, ObservableWatcherPipe],
+  entryComponents: [AppSplashComponent, InplaceLoadingComponent, SvgSpinnerComponent],
+  exports: [AppSplashComponent, InplaceLoadingComponent, SvgSpinnerComponent],
   imports: [
-    NgxSerproRxModule,
+    PraticoRxModule,
     BrowserModule
   ]
 })
-export class NgxSerproUiModule {
+export class PraticoUiModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: NgxSerproUiModule,
-      providers: NGX_SERPRO_UI_PROVIDERS
+      ngModule: PraticoUiModule,
+      providers: PRATICAL_UI_PROVIDERS
     };
   }
 

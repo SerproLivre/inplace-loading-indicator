@@ -12,13 +12,13 @@ import { ObservableWatched, ObservableWatcher } from '../../rx/index';
  * @class InplaceLoadingComponent
  * @implements {OnChanges}
  * @example ```
- *    <ngxs-inplace-loading>Processing...</ngxs-inplace-loading>
+ *    <pratico-inplace-loading>Processing...</pratico-inplace-loading>
  *    or
- *    <ngxs-inplace-loading><ngxs-spinner spinner="balls"></ngxs-spinner></ngxs-inplace-loading>
+ *    <pratico-inplace-loading><pratico-spinner spinner="balls"></pratico-spinner></pratico-inplace-loading>
  * ```
  */
 @Component({
-  selector: 'ngxs-inplace-loading',
+  selector: 'pratico-inplace-loading',
   template: `<ng-content></ng-content>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

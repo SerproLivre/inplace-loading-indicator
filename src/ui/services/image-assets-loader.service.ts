@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { svgAsEmbededResource } from '../../helpers/svg-as-embeded-resource';
 
-export interface NgxsAssetsResourcesUrls {
+export interface AssetsResourcesUrls {
   [name: string]: string;
 }
 
@@ -18,7 +18,7 @@ import {
   SQUARES_SVG
 } from '../../assets/icons/svg-icons';
 
-export const EMBEDDED_IMAGE_RESOURCES: NgxsAssetsResourcesUrls = {
+export const EMBEDDED_IMAGE_RESOURCES: AssetsResourcesUrls = {
   'ball': BALL_SVG,
   'balls': BALLS_SVG,
   'blue-loading': BLUE_LOADING,
@@ -46,7 +46,7 @@ export const DefaultLoadingImage = 'blue-loading';
 @Injectable()
 export class ImageAssetsLoader {
 
-  private resources: NgxsAssetsResourcesUrls = EMBEDDED_IMAGE_RESOURCES;
+  private resources: AssetsResourcesUrls = EMBEDDED_IMAGE_RESOURCES;
 
   /**
    * Creates an instance of ImageAssetsLoader.

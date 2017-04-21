@@ -11,7 +11,7 @@ import { svgAsEmbededResource } from '../../helpers/svg-as-embeded-resource';
  * @class SvgSpinnerComponent
  */
 @Component({
-  selector: 'ngxs-spinner',
+  selector: 'pratico-spinner',
   template: `<img [src]="svgEmbeddableContent" [width]="width" [height]="height">`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
