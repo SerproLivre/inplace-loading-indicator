@@ -30,6 +30,7 @@
   "homepage": "https://github.com/SerproLivre/inplace-loading-indicator#readme",
   "dependencies": {
     "@types/jasmine": "^2.5.47",
+    "parse-css-dimension": "^1.1.0",
     "ts-node": "^3.0.2"
   },
   "peerDependencies": {
