@@ -4,3 +4,4 @@ npm*.log
 npm-debug.log.446991756
 yarn-error.log
 coverage
+*.wav
