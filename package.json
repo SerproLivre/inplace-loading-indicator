@@ -7,7 +7,7 @@
     "test": "cross-env NODE_ENV=test UNIT_TESTS=true jest --watchAll",
     "ci": "yarn lint && cross-env NODE_ENV=test jest --coverage",
     "build": "webpack --progress",
-    "lint": "tslint --config tslint.json 'src/**/*.ts' -e 'src/declarations.d.ts'",
+    "lint": "tslint --config tslint.json 'src/**/*.ts' 'sample-app/app/**/*.ts'  -e 'src/monaco.d.ts'",
     "prepublish": "npm run lint && npm run compile",
     "compile": "rimraf dist && ngc -p src/tsconfig.aot.json && rimraf dist/node_modules && webpack"
   },

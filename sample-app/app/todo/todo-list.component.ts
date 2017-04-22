@@ -4,7 +4,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Todo } from './todo.model';
 
 @Component({
-    selector: 'todo-list',
+    selector: 'pratico-todo-list',
     template: `<h1 class="main-title">Fuse-box NG2 Todo <pratico-spinner spinner="ball" width="50" height="50"></pratico-spinner></h1>
 <md-card class="center-card">
     <md-input-container class="full-width">
@@ -16,8 +16,8 @@ import { Todo } from './todo.model';
     <md-card-content>
         <md-tab-group>
             <md-tab *ngFor="let listName of todoLists" label="{{listName}}">
-                <todo-item [todo]="todo" (deleteTodo)="deleteTodo($event)" *ngFor="let todo of todos | todoFilter: listName">
-                </todo-item>
+                <pratico-todo-item [todo]="todo" (deleteTodo)="deleteTodo($event)" *ngFor="let todo of todos | todoFilter: listName">
+                </pratico-todo-item>
             </md-tab>
         </md-tab-group>
     </md-card-content>

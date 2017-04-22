@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Todo } from './todo.model';
 
 @Component({
-  selector: 'todo-item',
+  selector: 'pratico-todo-item',
   template: `
-    <div class="todo-item">
-    <md-checkbox class="checkbox-label" [(ngModel)]="todo.done" *ngIf="!editMode">{{todo?.name}}</md-checkbox>
+    <div class="pratico-todo-item">
+    <md-checkbox class="checkbox-label" [(ngModel)]="todo.done" *ngIf="!editMode">{{todo.name}}</md-checkbox>
     <md-input-container class="edit-input" *ngIf="editMode">
-        <input mdInput [(ngModel)]="todo?.name" (keyup)="onKeyUp($event)">
+        <input mdInput [(ngModel)]="todo.name" (keyup)="onKeyUp($event)">
     </md-input-container>
     <button class="menu-button" md-icon-button [mdMenuTriggerFor]="menu">
         <i class="material-icons">more_vert</i>
