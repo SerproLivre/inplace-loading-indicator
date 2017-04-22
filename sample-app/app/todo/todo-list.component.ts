@@ -1,11 +1,30 @@
-import * as _ from 'lodash';
+  import * as _ from 'lodash';
 import { TodoService } from './todo.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Todo } from './todo.model';
 
 @Component({
     selector: 'todo-list',
-    templateUrl: 'app/todo/todo-list.component.html'
+    template: `<h1 class="main-title">Fuse-box NG2 Todo <pratico-spinner spinner="ball" width="50" height="50"></pratico-spinner></h1>
+<md-card class="center-card">
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Add a new todo" [(ngModel)]="newTodo.name" (keyup)="onKeyUp($event)">
+    </md-input-container>
+</md-card>
+
+<md-card class="center-card padding-none">
+    <md-card-content>
+        <md-tab-group>
+            <md-tab *ngFor="let listName of todoLists" label="{{listName}}">
+                <todo-item [todo]="todo" (deleteTodo)="deleteTodo($event)" *ngFor="let todo of todos | todoFilter: listName">
+                </todo-item>
+            </md-tab>
+        </md-tab-group>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center" *ngIf="shouldShowClearAll()">
+        <button md-button (click)="clearAllDone()">Clear all done</button>
+    </md-card-actions>
+</md-card>`
 })
 export class TodoListComponent implements OnInit {
     todos: Todo[];

@@ -2,125 +2,109 @@ import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TodoListComponent } from './todo-list.component';
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TodoService } from './todo.service';
 
-import * as sinon from 'sinon';
-import { expect } from 'chai';
 import { TodoFilter } from './todo-filter.pipe';
 
-import {
-    BrowserDynamicTestingModule,
-    platformBrowserDynamicTesting
-}
-    from '@angular/platform-browser-dynamic/testing';
-
-
 describe(TodoListComponent.name, () => {
-    let todoServiceMock: TodoService = <any>{ getTodos: () => [{ name: 'task 1', done: false }] };
-    let fixture: ComponentFixture<TodoListComponent>;
+  const todoServiceMock: TodoService = <any>{ getTodos: () => [{ name: 'task 1', done: false }] };
+  let fixture: ComponentFixture<TodoListComponent>;
 
-    beforeEach(() => {
-        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-    });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        TodoListComponent,
+        TodoFilter
+      ],
+      imports: [
+        FormsModule
+      ],
+      providers: [
+        { provide: TodoService, useValue: todoServiceMock }
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
 
-    afterEach(() => {
-        TestBed.resetTestEnvironment();
-    });
+    }).compileComponents();
+    fixture = TestBed.createComponent(TodoListComponent);
+  }));
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                TodoListComponent,
-                TodoFilter
-            ],
-            imports: [
-                FormsModule
-            ],
-            providers: [
-                { provide: TodoService, useValue: todoServiceMock }
-            ],
-            schemas: [
-                CUSTOM_ELEMENTS_SCHEMA
-            ]
+  it('calls service to get todos', () => {
+    fixture.componentInstance['todoService'].getTodos = jasmine.createSpy('getTodos').and.returnValue([]);
+    fixture.detectChanges();
+    expect(fixture.componentInstance['todoService'].getTodos).toHaveBeenCalled();
+  });
 
-        });
-        fixture = TestBed.createComponent(TodoListComponent);
-    });
+  it('adds a new todo after fill the todo name and press Enter', () => {
+    fixture.detectChanges();
+    const el = fixture.debugElement.query(By.css('input'));
+    fixture.componentInstance.newTodo.name = 'new task';
+    el.triggerEventHandler('keyup', { keyCode: 13 });
+    fixture.detectChanges();
+    expect(fixture.componentInstance.todos.find((item) => {
+      return item.name === 'new task' && item.done === false;
+    })).not.toBeNull();
+  });
 
-    it('calls service to get todos', () => {
-        let getTodosStub = fixture.componentInstance['todoService'].getTodos = sinon.stub(todoServiceMock, 'getTodos').returns([]);
-        fixture.detectChanges();
-        expect(getTodosStub.called).to.eq(true);
-        sinon.restore(todoServiceMock.getTodos);
-    });
+  it('resets the new Todo after initialization', () => {
+    fixture.detectChanges();
+    fixture.componentInstance.newTodo.name = 'new task';
+    fixture.componentInstance.resetNewTodo = jasmine.createSpy('resetNewTodo').and.callThrough();
+    fixture.componentInstance.ngOnInit();
+    expect(fixture.componentInstance.resetNewTodo).toHaveBeenCalled();
+  });
 
-    it('adds a new todo after fill the todo name and press Enter', () => {
-        fixture.detectChanges();
-        let el = fixture.debugElement.query(By.css('input'));
-        fixture.componentInstance.newTodo.name = 'new task';
-        el.triggerEventHandler('keyup', { keyCode: 13 });
-        fixture.detectChanges();
-        expect(fixture.componentInstance.todos).to.include({ name: 'new task', done: false });
-    });
+  it('resets the new Todo after adding a new task', () => {
+    fixture.detectChanges();
 
-    it('resets the new Todo after initialization', () => {
-        let spyOnResetNewTodo = sinon.spy(fixture.componentInstance, 'resetNewTodo');
-        fixture.detectChanges();
-        expect(spyOnResetNewTodo.called).to.be.ok;
-    });
+    fixture.componentInstance.resetNewTodo = jasmine.createSpy('resetNewTodo');
 
-    it('resets the new Todo after adding a new task', () => {
-        fixture.detectChanges();
+    const el = fixture.debugElement.query(By.css('input'));
+    fixture.componentInstance.newTodo.name = 'new task';
+    el.triggerEventHandler('keyup', { keyCode: 13 });
+    fixture.detectChanges();
 
-        let spyOnResetNewTodo = sinon.spy(fixture.componentInstance, 'resetNewTodo');
+    expect(fixture.componentInstance.resetNewTodo).toHaveBeenCalled();
+  });
 
-        let el = fixture.debugElement.query(By.css('input'));
-        fixture.componentInstance.newTodo.name = 'new task';
-        el.triggerEventHandler('keyup', { keyCode: 13 });
-        fixture.detectChanges();
+  it('deletes a todo', () => {
+    fixture.detectChanges();
+    const firstTodo = fixture.componentInstance.todos[0];
+    fixture.componentInstance.deleteTodo(firstTodo);
+    expect(fixture.componentInstance.todos).not.toContain(firstTodo);
+  });
 
-        expect(spyOnResetNewTodo.called).to.be.ok;
-    });
+  it('clears all done tasks', () => {
+    fixture.detectChanges();
 
-    it('deletes a todo', () => {
-        fixture.detectChanges();
-        let firstTodo = fixture.componentInstance.todos[0];
-        fixture.componentInstance.deleteTodo(firstTodo);
-        expect(fixture.componentInstance.todos).to.not.include(firstTodo);
-    });
+    const doneTask1 = { name: 'Done Task 1', done: true };
+    const doneTask2 = { name: 'Done Task 2', done: true };
 
-    it('clears all done tasks', () => {
-        fixture.detectChanges();
+    fixture.componentInstance.todos.push(doneTask1);
+    fixture.componentInstance.todos.push(doneTask2);
+    fixture.componentInstance.clearAllDone();
 
-        let doneTask1 = { name: 'Done Task 1', done: true };
-        let doneTask2 = { name: 'Done Task 2', done: true };
+    expect(fixture.componentInstance.todos).not.toContain(doneTask1);
+    expect(fixture.componentInstance.todos).not.toContain(doneTask2);
+  });
 
-        fixture.componentInstance.todos.push(doneTask1);
-        fixture.componentInstance.todos.push(doneTask2);
-        fixture.componentInstance.clearAllDone();
+  it('#shouldShowClearAll responds true when exists done tasks', () => {
+    fixture.detectChanges();
 
-        expect(fixture.componentInstance.todos).to.not.include(doneTask1);
-        expect(fixture.componentInstance.todos).to.not.include(doneTask2);
-    });
+    const doneTask1 = { name: 'Done Task 1', done: true };
+    fixture.componentInstance.todos.push(doneTask1);
 
-    it('#shouldShowClearAll responds true when exists done tasks', () => {
-        fixture.detectChanges();
+    expect(fixture.componentInstance.shouldShowClearAll()).toBeTruthy();
+  });
 
-        let doneTask1 = { name: 'Done Task 1', done: true };
-        fixture.componentInstance.todos.push(doneTask1);
-
-        expect(fixture.componentInstance.shouldShowClearAll()).to.be.true;
-    });
-
-    it('#shouldShowClearAll responds false when does not exists done tasks', () => {
-        fixture.detectChanges();
-
-        let doneTask1 = { name: 'Done Task 1', done: false };
-        fixture.componentInstance.todos.push(doneTask1);
-
-        expect(fixture.componentInstance.shouldShowClearAll()).to.be.false;
-    });
+  it('#shouldShowClearAll responds false when does not exists done tasks', () => {
+    fixture.detectChanges();
+    const doneTask1 = { name: 'Done Task 1', done: false };
+    fixture.componentInstance.todos.push(doneTask1);
+    expect(fixture.componentInstance.shouldShowClearAll()).toBeFalsy();
+  });
 
 
 });

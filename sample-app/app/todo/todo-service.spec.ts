@@ -1,13 +1,14 @@
 
-import { expect } from 'chai';
 import { TodoService } from './todo.service';
 
 describe(TodoService.name, () => {
     let todoService: TodoService;
-    before(() => {
+
+    beforeEach(() => {
         todoService = new TodoService();
-    })
+    });
+
     it('returns todos', () => {
-        expect(todoService.getTodos()).to.deep.eq([{ done: false, name: 'foo' }, { done: false, name: 'bar' }]);
+        expect(todoService.getTodos()).toEqual([{ done: false, name: 'foo' }, { done: false, name: 'bar' }]);
     });
 });
