@@ -5,3 +5,4 @@ npm-debug.log.446991756
 yarn-error.log
 coverage
 *.wav
+sample-app/assets/*

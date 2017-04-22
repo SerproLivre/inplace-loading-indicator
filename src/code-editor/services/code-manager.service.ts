@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 
+
+export const TEMPLATE_SCRIPT = `let a = 1;
+let p = new Promise((resolve, reject) => {
+  setTimeout(() => resolve(), 3000);
+});`;
 /**
  * Provides access to source code to be displayed on CodeEditor
  *
@@ -9,12 +14,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CodeManager {
   getCode(path: string) {
-    return `
-      let a = 1;
-
-      let p = new Promise((resolve, reject) => {
-        setTimeout(() => resolve(), 3000);
-      });
-    `;
+    return TEMPLATE_SCRIPT;
   }
 }

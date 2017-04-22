@@ -1,5 +1,5 @@
 import * as path from 'path';
-let nodeExternals = require('webpack-node-externals');
+const nodeExternals = require('webpack-node-externals');
 
 export function getBuildConfig(outputFileName: string, libraryName: string) {
 
@@ -28,10 +28,10 @@ export function getBuildConfig(outputFileName: string, libraryName: string) {
         {
           test: /(\.ts)$/,
           loader: 'awesome-typescript-loader',
-          exclude: /(\.spec.ts)$/,
           query: {
             useForkChecker: true,
-            tsconfig: path.resolve(path.resolve(__dirname, '../tsconfig.umd.json'))
+            //transpileOnly: true,
+            configFileName: path.resolve(__dirname, '../src/tsconfig.umd.json')
           }
         }, {
             test: /\.svg$/i,
@@ -44,6 +44,10 @@ export function getBuildConfig(outputFileName: string, libraryName: string) {
     plugins: [
     ],
     resolve: {
+      modules: [
+        path.resolve(__dirname, '../src'),
+        path.resolve(__dirname, '../node_modules')
+      ],
       extensions: ['.ts', '.js']
     }
   };

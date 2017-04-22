@@ -7,14 +7,14 @@ import * as _ from 'lodash';
 // fp-ngx -> fast and pratico angular
 @Component({
   selector: 'pratico-code-editor',
-  template: `<div id='editor' #editor class="monaco-editor" ></div>`
+  template: `<div id='editor' #editor class="monaco-editor" style="width:800px;height:600px;" ></div>`
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit {
 
   @ViewChild('editor') editorContent: ElementRef;
 
   @Input() fileName: string;
-  @Input() language: string;
+  @Input() language = 'typescript';
 
   @Output() load: EventEmitter<void> = new EventEmitter<void>();
   @Output() save: EventEmitter<void> = new EventEmitter<void>();
@@ -37,38 +37,62 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  get monaco() {
-    return this.windowRef.nativeWindow['monaco'];
-  }
+  // get monaco(): monaco. {
+  //   return this.windowRef.nativeWindow['monaco'];
+  // }
 
   ngAfterViewInit() {
-    const onGotAmdLoader = () => {
-      // Load monaco
-      this.windowRef.nativeWindow.require.config({ paths: { 'vs': 'assets/monaco/vs' } });
-      this.windowRef.nativeWindow.require(['vs/editor/editor.main'], () => {
-        this.initMonaco();
-      });
-    };
+    setTimeout(() => {
 
-    // Load AMD loader if necessary
-    if (!this.windowRef.nativeWindow.require) {
-      const loaderScript = document.createElement('script');
-      loaderScript.type = 'text/javascript';
-      loaderScript.src = 'assets/monaco/vs/loader.js';
-      loaderScript.addEventListener('load', onGotAmdLoader);
-      document.body.appendChild(loaderScript);
-    } else {
-      onGotAmdLoader();
-    }
+      const onGotAmdLoader = () => {
+        // Load monaco
+        this.windowRef.nativeWindow.require.config({ paths: { 'vs': 'assets/monaco/vs' } });
+        this.windowRef.nativeWindow.require(['vs/editor/editor.main'], () => {
+          this.initMonaco();
+        });
+      };
+
+      // Load AMD loader if necessary
+      if (!this.windowRef.nativeWindow.require) {
+        const loaderScript = document.createElement('script');
+        loaderScript.type = 'text/javascript';
+        loaderScript.src = 'assets/monaco/vs/loader.js';
+        loaderScript.addEventListener('load', onGotAmdLoader);
+        document.body.appendChild(loaderScript);
+      } else {
+        onGotAmdLoader();
+      }
+    }, 500);
   }
 
   // Will be called once monaco library is available
   initMonaco() {
     const myDiv: HTMLDivElement = this.editorContent.nativeElement;
-    this.monaco.editor.create(myDiv, {
+    monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+      target: monaco.languages.typescript.ScriptTarget.ES2016,
+      allowNonTsExtensions: true,
+      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+      module: monaco.languages.typescript.ModuleKind.CommonJS,
+      noEmit: true,
+      typeRoots: ['assets/@types']
+    });
+
+
+
+    monaco.editor.create(myDiv, {
       value: this.codeManager.getCode(this.fileName),
       language: this.language
     });
+
+    // extra libraries
+    monaco.languages.typescript.typescriptDefaults.addExtraLib([
+        'declare class Facts {',
+        '    /**',
+        '     * Returns the next fact',
+        '     */',
+        '    static next():string',
+        '}',
+    ].join('\n'), 'filename/facts.d.ts');
   }
 
   afterLoad() {

@@ -63,7 +63,7 @@ export class SvgSpinnerComponent {
    */
   getSvgEmbeddableContent(): SafeResourceUrl {
     if (this.isSvgKeyName(this.spinner)) {
-      return this.sanitizeAndEncodeImageUrl(this.assets.getAssetByName(this.spinner));
+      return this.sanitizeImageUrl(this.assets.getAssetByName(this.spinner));
     } else {
       return this.sanitizeAndEncodeImageUrl(this.spinner);
     }
@@ -98,5 +98,9 @@ export class SvgSpinnerComponent {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
       `${svgAsEmbededResource(content)}`
     );
+  }
+
+  private sanitizeImageUrl(content: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(content);
   }
 }

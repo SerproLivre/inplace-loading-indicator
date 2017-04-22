@@ -11,11 +11,15 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
-    "target": "es5"
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "exclude": [
     "dist",
     "node_modules",
-    "test"
+    "test",
+    "sample-app"
   ]
 }
