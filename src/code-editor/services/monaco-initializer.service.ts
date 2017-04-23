@@ -1,33 +1,49 @@
-import { Injectable } from '@angular/core';
 import { WindowRef } from '../../browser/services/window-ref.service';
 import { CodeEditorConfig } from './code-editor.config.service';
-
+import { MonacoTypingsLoader } from './monaco-typings-loader.service';
+import { Injectable } from '@angular/core';
 @Injectable()
 export class MonacoInitializer {
-  constructor(protected windowRef: WindowRef, protected config: CodeEditorConfig ) {
-    this.init();
+
+  private resolve: Function;
+  private reject: Function;
+
+  static initialize(windowRef: WindowRef, config: CodeEditorConfig, typingsLoader: MonacoTypingsLoader) {
+    return function() {
+      console.log('ASDASDSA ASDAS DSA DA');
+      const monacoInitializer = new MonacoInitializer(windowRef, config, typingsLoader);
+      debugger;
+      return monacoInitializer.init();
+    };
   }
 
-  private init() {
+  constructor(private windowRef: WindowRef, private config: CodeEditorConfig, private typingsLoader: MonacoTypingsLoader) {
+  }
 
-    const onGotAmdLoader = () => {
-      // Load monaco
-      this.windowRef.nativeWindow.require.config({ paths: { 'vs': this.config.monacoPath } });
-      this.windowRef.nativeWindow.require(['vs/editor/editor.main'], () => {
-        this.configureTypescript();
-      });
-    };
+  private init(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.resolve = resolve;
+      this.reject = reject;
 
-    // Load AMD loader if necessary
-    if (!this.windowRef.nativeWindow.require) {
-      const loaderScript = document.createElement('script');
-      loaderScript.type = 'text/javascript';
-      loaderScript.src = 'assets/monaco/vs/loader.js';
-      loaderScript.addEventListener('load', onGotAmdLoader);
-      document.body.appendChild(loaderScript);
-    } else {
-      onGotAmdLoader();
-    }
+      const onGotAmdLoader = () => {
+        // Load monaco
+        this.windowRef.nativeWindow.require.config({ paths: { 'vs': this.config.monacoPath } });
+        this.windowRef.nativeWindow.require(['vs/editor/editor.main'], () => {
+          this.configureTypescript();
+        });
+      };
+
+      // Load AMD loader if necessary
+      if (!this.windowRef.nativeWindow.require) {
+        const loaderScript = document.createElement('script');
+        loaderScript.type = 'text/javascript';
+        loaderScript.src = 'assets/monaco/vs/loader.js';
+        loaderScript.addEventListener('load', onGotAmdLoader);
+        document.body.appendChild(loaderScript);
+      } else {
+        onGotAmdLoader();
+      }
+    });
   }
 
   private configureTypescript() {
@@ -44,5 +60,7 @@ export class MonacoInitializer {
         '@types'
       ]
     });
+    this.typingsLoader.loadTypings();
+    this.resolve();
   }
 }

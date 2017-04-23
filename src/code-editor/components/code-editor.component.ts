@@ -1,7 +1,6 @@
 import { Input, Component, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnInit, HostBinding } from '@angular/core';
 import { CodeManager } from '../services/code-manager.service';
 import { WindowRef } from '../../browser/services/window-ref.service';
-
 import * as _ from 'lodash';
 
 // fp-ngx -> fast and pratico angular
@@ -31,7 +30,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   private _defaultBorder = '1px solid gray';
   private _border: string = null;
 
-  constructor(protected codeManager: CodeManager, protected windowRef: WindowRef) {
+  constructor(protected codeManager: CodeManager,
+   protected windowRef: WindowRef
+   ) {
   }
 
   ngOnInit() {
@@ -42,6 +43,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   // }
 
   ngAfterViewInit() {
+    this.initMonaco();
+  }
+  /*ngAfterViewInit() {
     setTimeout(() => {
 
       const onGotAmdLoader = () => {
@@ -63,37 +67,33 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
         onGotAmdLoader();
       }
     }, 500);
-  }
+  }*/
 
   // Will be called once monaco library is available
   initMonaco() {
     const myDiv: HTMLDivElement = this.editorContent.nativeElement;
-    monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+   /* monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+      emitDecoratorMetadata: true,
+      experimentalDecorators: true,
+      lib: [  'dom', 'es2016'],
       target: monaco.languages.typescript.ScriptTarget.ES2016,
       allowNonTsExtensions: true,
       moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
       module: monaco.languages.typescript.ModuleKind.CommonJS,
       noEmit: true,
-      typeRoots: ['assets/@types']
+      typeRoots: ['node_modules/@types']
+    });
+*/
+
+
+    this.windowRef.nativeWindow.PRATICO_EDITOR = monaco.editor.create(myDiv, {
+      model: monaco.editor.createModel(this.codeManager.getCode(this.fileName), this.language, monaco.Uri.parse('file:///script.ts'))
     });
 
+    //this.typingsLoader.loadTypings();
 
-
-    monaco.editor.create(myDiv, {
-      value: this.codeManager.getCode(this.fileName),
-      language: this.language
-    });
-
-    // extra libraries
-    monaco.languages.typescript.typescriptDefaults.addExtraLib([
-        'declare class Facts {',
-        '    /**',
-        '     * Returns the next fact',
-        '     */',
-        '    static next():string',
-        '}',
-    ].join('\n'), 'filename/facts.d.ts');
   }
+
 
   afterLoad() {
     this.load.emit();
@@ -177,3 +177,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
     }
   }
 }
+
+
+/*
+## R
+*/
