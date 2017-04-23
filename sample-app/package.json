@@ -7,22 +7,14 @@
   "description": "Ngx Pratico - Sample App",
   "main": "index.js",
   "scripts": {
-    "compile-library": "cd ../; yarn webpack",
+    "compile-library": "cd ../;  node_modules/.bin/webpack  -w --output-path=sample-app/assets",
     "sass": "./node_modules/.bin/node-sass app/main.scss -o app/",
     "copy-files": "node copy-files.ts",
-    "prestart": "./link-node_modules.sh; npm run compile-library; npm run sass && npm run copy-files",
-    "start": "./node_modules/.bin/lite-server ."
+    "prestart": "./link-node_modules.sh; npm run sass && npm run copy-files",
+    "start": "node_modules/.bin/concurrently \"node_modules/.bin/lite-server\" \"npm run compile-library\" "
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "cpx": "^1.5.0",
-    "node-sass": "^4.5.2",
-    "rimraf": "^2.6.1",
-    "shelljs": "^0.7.7",
-    "typescript": "^2.2.2"
-  },
-  "dependencies": {
-
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }

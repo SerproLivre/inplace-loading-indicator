@@ -1,26 +1,24 @@
 import { WindowRef } from '../../browser/services/window-ref.service';
 import { CodeEditorConfig } from './code-editor.config.service';
 import { MonacoTypingsLoader } from './monaco-typings-loader.service';
-import { Injectable } from '@angular/core';
-@Injectable()
+
+
+export function monacoInitializerFactory(windowRef: WindowRef, config: CodeEditorConfig, typingsLoader: MonacoTypingsLoader) {
+  return function () {
+    const monacoInitializer = new MonacoInitializer(windowRef, config, typingsLoader);
+    return monacoInitializer.init();
+  };
+}
+
 export class MonacoInitializer {
 
   private resolve: Function;
   private reject: Function;
 
-  static initialize(windowRef: WindowRef, config: CodeEditorConfig, typingsLoader: MonacoTypingsLoader) {
-    return function() {
-      console.log('ASDASDSA ASDAS DSA DA');
-      const monacoInitializer = new MonacoInitializer(windowRef, config, typingsLoader);
-      debugger;
-      return monacoInitializer.init();
-    };
-  }
-
   constructor(private windowRef: WindowRef, private config: CodeEditorConfig, private typingsLoader: MonacoTypingsLoader) {
   }
 
-  private init(): Promise<void> {
+  init(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.resolve = resolve;
       this.reject = reject;

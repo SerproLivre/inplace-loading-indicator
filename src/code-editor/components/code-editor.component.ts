@@ -38,59 +38,20 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  // get monaco(): monaco. {
-  //   return this.windowRef.nativeWindow['monaco'];
-  // }
-
   ngAfterViewInit() {
     this.initMonaco();
   }
-  /*ngAfterViewInit() {
-    setTimeout(() => {
-
-      const onGotAmdLoader = () => {
-        // Load monaco
-        this.windowRef.nativeWindow.require.config({ paths: { 'vs': 'assets/monaco/vs' } });
-        this.windowRef.nativeWindow.require(['vs/editor/editor.main'], () => {
-          this.initMonaco();
-        });
-      };
-
-      // Load AMD loader if necessary
-      if (!this.windowRef.nativeWindow.require) {
-        const loaderScript = document.createElement('script');
-        loaderScript.type = 'text/javascript';
-        loaderScript.src = 'assets/monaco/vs/loader.js';
-        loaderScript.addEventListener('load', onGotAmdLoader);
-        document.body.appendChild(loaderScript);
-      } else {
-        onGotAmdLoader();
-      }
-    }, 500);
-  }*/
 
   // Will be called once monaco library is available
   initMonaco() {
     const myDiv: HTMLDivElement = this.editorContent.nativeElement;
-   /* monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-      emitDecoratorMetadata: true,
-      experimentalDecorators: true,
-      lib: [  'dom', 'es2016'],
-      target: monaco.languages.typescript.ScriptTarget.ES2016,
-      allowNonTsExtensions: true,
-      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-      module: monaco.languages.typescript.ModuleKind.CommonJS,
-      noEmit: true,
-      typeRoots: ['node_modules/@types']
-    });
-*/
 
 
     this.windowRef.nativeWindow.PRATICO_EDITOR = monaco.editor.create(myDiv, {
       model: monaco.editor.createModel(this.codeManager.getCode(this.fileName), this.language, monaco.Uri.parse('file:///script.ts'))
     });
 
-    //this.typingsLoader.loadTypings();
+    // this.typingsLoader.loadTypings();
 
   }
 

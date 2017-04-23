@@ -12,11 +12,7 @@ const resources = {
     target: path.join(NPM_DIR, 'monaco-editor/min'),
     destination: path.join(CURRENT_PATH, 'assets/monaco'),
     recursive: true
-  },
-  'library-file': {
-    target: path.join(DIST_DIR, 'ngx-pratico.umd.js'),
-    destination: path.join(CURRENT_PATH, 'assets/')
-  },
+  }
   // 'typings': {
   //   target: path.join(NPM_DIR, '@types'),
   //   destination: path.join(CURRENT_PATH, 'assets/'),
