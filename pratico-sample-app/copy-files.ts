@@ -2,8 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const shelljs = require('shelljs');
 
-const NPM_DIR = path.join(__dirname, '../node_modules');
-const DIST_DIR = path.join(__dirname, '../dist');
+const NPM_DIR = path.join(__dirname, '../pratico-library/node_modules');
+const DIST_DIR = path.join(__dirname, '../pratico-library/dist');
 const CURRENT_PATH = path.join(__dirname, './');
 
 

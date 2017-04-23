@@ -39,10 +39,11 @@ System.config({
     '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
     'lodash': 'npm:lodash/lodash.js',
 
-    '@pratico/ui': 'assets/ngx-pratico.umd.js'
+    /*'@pratico/ui': 'assets/ngx-pratico.umd.js'*/
+    'ngx-pratico': 'npm:ngx-pratico/dist/ngx-pratico.umd.js'
   },
   meta: {
-    '@pratico/ui': {
+    'ngx-pratico': {
       format: 'cjs'
     }
   },
@@ -53,6 +54,9 @@ System.config({
       defaultExtension: 'ts',
     },
     rxjs: {
+      defaultExtension: 'js'
+    },
+    'ngx-pratico': {
       defaultExtension: 'js'
     }
   }

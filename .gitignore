@@ -1,8 +1,8 @@
 dist
-node_modules
+**/node_modules
 npm*.log
 npm-debug.log.446991756
 yarn-error.log
-coverage
+**/coverage
 *.wav
-sample-app/assets/*
+pratico-sample-app/assets/*

@@ -1,13 +1,10 @@
 {
   "name": "@pratico/sample-app",
-  "config": {
-    "NPM_PREFIX": "../node_modules"
-  },
   "version": "0.0.1",
   "description": "Ngx Pratico - Sample App",
   "main": "index.js",
   "scripts": {
-    "compile-library": "cd ../;  node_modules/.bin/webpack  -w --output-path=sample-app/assets",
+    "compile-library": "cd ../pratico-library;  node_modules/.bin/webpack  -w --output-path=sample-app/assets",
     "sass": "./node_modules/.bin/node-sass app/main.scss -o app/",
     "copy-files": "node copy-files.ts",
     "prestart": "./link-node_modules.sh; npm run sass && npm run copy-files",
