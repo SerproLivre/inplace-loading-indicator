@@ -8,10 +8,10 @@
   "main": "index.js",
   "scripts": {
     "compile-library": "cd ../; yarn webpack",
-    "sass": "../node_modules/.bin/node-sass app/main.scss -o app/",
-    "copy-files": "../node_modules/.bin/ts-node copy-files.ts",
-    "prestart": "npm run compile-library; npm run sass && npm run copy-files",
-    "start": "../node_modules/.bin/lite-server ."
+    "sass": "./node_modules/.bin/node-sass app/main.scss -o app/",
+    "copy-files": "node copy-files.ts",
+    "prestart": "./link-node_modules.sh; npm run compile-library; npm run sass && npm run copy-files",
+    "start": "./node_modules/.bin/lite-server ."
   },
   "author": "",
   "license": "ISC",

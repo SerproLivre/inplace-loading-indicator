@@ -1,4 +1,3 @@
-#!/usr/bin/env ../node_modules/.bin/ts-node
 const path = require('path');
 const fs = require('fs');
 const shelljs = require('shelljs');

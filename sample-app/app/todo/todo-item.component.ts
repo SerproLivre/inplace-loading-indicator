@@ -4,7 +4,7 @@ import { Todo } from './todo.model';
 @Component({
   selector: 'pratico-todo-item',
   template: `
-    <div class="pratico-todo-item">
+    <div class="todo-item">
     <md-checkbox class="checkbox-label" [(ngModel)]="todo.done" *ngIf="!editMode">{{todo.name}}</md-checkbox>
     <md-input-container class="edit-input" *ngIf="editMode">
         <input mdInput [(ngModel)]="todo.name" (keyup)="onKeyUp($event)">

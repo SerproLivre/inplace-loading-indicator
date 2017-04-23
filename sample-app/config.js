@@ -3,11 +3,12 @@ System.config({
   transpiler: 'typescript',
   //typescript compiler options
   typescriptOptions: {
+    allowJs: false,
     emitDecoratorMetadata: true
   },
   paths: {
-    //'npm:': 'assets/npm/',
-    'npm:': 'https://unpkg.com/'
+    'npm:': 'node_modules/',
+    //'npm:': 'https://unpkg.com/'
   },
   //map tells the System loader where to look for things
   map: {
@@ -33,11 +34,17 @@ System.config({
     '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
     'angular2-busy': 'https://unpkg.com/angular2-busy@2.0.4/index.js',
     'rxjs': 'npm:rxjs',
-    'typescript': 'npm:typescript@2.2.1/lib/typescript.js',
+    //'typescript': 'npm:typescript@2.2.1/lib/typescript.js',
+    'typescript': 'npm:typescript/lib/typescript.js',
     '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
-    'lodash': 'npm:lodash@4.17.4',
+    'lodash': 'npm:lodash/lodash.js',
 
     '@pratico/ui': 'assets/ngx-pratico.umd.js'
+  },
+  meta: {
+    '@pratico/ui': {
+      format: 'cjs'
+    }
   },
   //packages defines our app package
   packages: {
