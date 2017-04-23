@@ -7,7 +7,7 @@ import { TodoListComponent } from './todo/todo-list.component';
 import { TodoService } from './todo/todo.service';
 import { TodoFilter } from './todo/todo-filter.pipe';
 import { TodoItemComponent } from './todo/todo-item.component';
-import { PraticoUiModule, PraticoCodeEditorModule } from '@pratico/ui';
+import { PraticoUiModule, PraticoCodeEditorModule } from '../../src/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({

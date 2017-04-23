@@ -11,8 +11,8 @@ import { Directive, Component, Injectable } from '@angular/core';
 
 @Injectable()
 export class SomeService2 {
-  doesSomething() {
-    console.log('Does something...');
+  execute() {
+    console.log('execute... just kinding... it justs writes to log. :D ');
   }
 }
 @Component({

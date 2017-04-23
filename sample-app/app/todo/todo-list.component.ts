@@ -5,7 +5,7 @@ import { Todo } from './todo.model';
 
 @Component({
     selector: 'pratico-todo-list',
-    template: `<h1 class="main-title">Fuse-box NG2 Todo <pratico-spinner spinner="ball" width="50" height="50"></pratico-spinner></h1>
+    template: `<h1 class="main-title">Todo App <pratico-spinner spinner="ball" width="50" height="50"></pratico-spinner></h1>
 <md-card class="center-card">
     <md-input-container class="full-width">
         <input mdInput placeholder="Add a new todo" [(ngModel)]="newTodo.name" (keyup)="onKeyUp($event)">
