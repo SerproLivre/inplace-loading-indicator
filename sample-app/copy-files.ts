@@ -3,13 +3,13 @@ const fs = require('fs');
 const shelljs = require('shelljs');
 
 const NPM_DIR = path.join(__dirname, '../node_modules');
-const DIST_DIR = path.join(__dirname, '../dist');
+// const DIST_DIR = path.join(__dirname, '../dist');
 const CURRENT_PATH = path.join(__dirname, './');
 
 
 const resources = {
   'monaco-editor': {
-    target: path.join(NPM_DIR, 'monaco-editor/min'),
+    target: path.join(NPM_DIR, 'monaco-editor/min/vs'),
     destination: path.join(CURRENT_PATH, 'assets/monaco'),
     recursive: true
   }
@@ -22,6 +22,9 @@ const resources = {
 
 Object.keys(resources).forEach(fileKey => {
   const copyConfig = resources[fileKey];
+  if (! fs.existsSync(copyConfig.destination)) {
+    shelljs.mkdir('-p', copyConfig.destination);
+  }
   if (copyConfig.recursive) {
     shelljs.cp('-r', copyConfig.target, copyConfig.destination);
   } else {
