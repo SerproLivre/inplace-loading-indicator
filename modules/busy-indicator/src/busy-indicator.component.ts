@@ -3,7 +3,7 @@ import {
   SimpleChanges, ChangeDetectionStrategy, Output, EventEmitter/*, ViewChild, ElementRef,*/
 } from '@angular/core';
 
-import { ObservableWatched, ObservableWatcher } from '../../rx/index';
+import { ObservableWatched, ObservableWatcher } from '@pratico/rx-extensions';
 
 /**
  * Component which shows a svg loading indicator while a observable is executing
@@ -18,11 +18,11 @@ import { ObservableWatched, ObservableWatcher } from '../../rx/index';
  * ```
  */
 @Component({
-  selector: 'pratico-visible-when-loading',
+  selector: 'pratico-busy-indicator',
   template: `<ng-content></ng-content>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VisibleWhenLoadingComponent implements OnChanges {
+export class BusyIndicatorComponent implements OnChanges {
 
   get loading() {
     return (this.observable && this.observable.watcher) ? this.observable.watcher.processing : false;

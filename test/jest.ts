@@ -30,7 +30,6 @@ global['preparedTetsts'] = false;
 
 
 if (!global['preparedTetsts'] && isIntegrationTestEnabled()) {
-  console.log('XXXXXXXXXAAAAAAAAAAAAAAAAAAAAAA AQUI!');
   global['preparedTetsts'] = true;
 
   beforeEach(async(() => {

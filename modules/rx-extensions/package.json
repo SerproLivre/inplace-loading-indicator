@@ -1,0 +1,65 @@
+{
+  "name": "@pratico/rx-extensions",
+  "version": "1.0.2",
+  "description": "Some pratical rx extensions.",
+  "main": "dist/index.js",
+  "private": false,
+  "scripts": {
+    "rmdist": "../../node_modules/.bin/rimraf ./dist",
+    "prepublish": "yarn rmdist && ../../node_modules/.bin/tsc",
+    "test": "../../node_modules/.bin/jest"
+  },
+  "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pratico-web/rx.git"
+  },
+  "keywords": [
+    "rxjs",
+    "pratico",
+    "pratical"
+  ],
+  "author": "Abner Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pratico-web/rx/issues"
+  },
+  "homepage": "https://github.com/pratico-web/rx#readme",
+  "devDependencies": {
+    "rxjs": "^5.3.0"
+  },
+  "jest": {
+    "globals": {
+      "__TS_CONFIG__": "../../tsconfig.json"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "svg"
+    ],
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/index.ts",
+      "!src/**/*.svg",
+      "!src/**/*.sketch.ts",
+      "!src/**/index.ts",
+      "!src/**/*.module.ts",
+      "!**/node_modules"
+    ],
+    "coverageDirectory": "./coverage",
+    "coverageReporters": [
+      "json",
+      "html",
+      "text"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>../../test/jest.ts",
+    "transform": {
+      "\\.(svg)$": "<rootDir>../../test/svg-file-transformer.js",
+      "^.+\\.(ts|tsx|js|html)$": "<rootDir>../..//node_modules/ts-jest/preprocessor.js"
+    },
+    "testResultsProcessor": "<rootDir>../../node_modules/ts-jest/coverageprocessor.js",
+    "verbose": true,
+    "testRegex": ".*\\.spec\\.(ts)$"
+  }
+}

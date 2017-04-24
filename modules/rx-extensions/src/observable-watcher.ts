@@ -19,6 +19,7 @@ export interface ObservableWatched<T> extends Observable<T> {
 export class ObservableWatcher<T> {
 
   processing = false;
+  onStarted: EventEmitter<void> = new EventEmitter<void>();
   onCompleted: EventEmitter<void> = new EventEmitter<void>();
   observable: ObservableWatched<T>;
   observer: Observer<any>;
@@ -91,6 +92,7 @@ export class ObservableWatcher<T> {
     originObservable.subscribe = <any>(function (nextOriginal, errorOriginal, completeOriginal) {
       __this.console.log('subscribe called!');
       __this.processing = true;
+      __this.onStarted.emit();
       const error = function () {
         __this.errorHandler.apply(__this, arguments);
         if (errorOriginal) {

@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ImageAssetsLoader } from './services/image-assets-loader.service';
 import { PraticoRxModule } from '../rx/rx.module';
-import { InplaceLoadingComponent } from './components/inplace-loading.component';
+import { VisibleWhenLoadingComponent } from './components/inplace-loading.component';
 import { ObservableWatcherPipe } from './pipes/observable-watcher.pipe';
 import { SvgSpinnerComponent } from './components/svg-spinner.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,9 +14,9 @@ export const PRATICAL_UI_PROVIDERS = [
 
 
 @NgModule({
-  declarations: [AppSplashComponent, InplaceLoadingComponent, SvgSpinnerComponent, ObservableWatcherPipe],
-  entryComponents: [AppSplashComponent, InplaceLoadingComponent, SvgSpinnerComponent],
-  exports: [AppSplashComponent, InplaceLoadingComponent, SvgSpinnerComponent],
+  declarations: [AppSplashComponent, VisibleWhenLoadingComponent, SvgSpinnerComponent, ObservableWatcherPipe],
+  entryComponents: [AppSplashComponent, VisibleWhenLoadingComponent, SvgSpinnerComponent],
+  exports: [AppSplashComponent, VisibleWhenLoadingComponent, SvgSpinnerComponent],
   imports: [
     PraticoRxModule,
     BrowserModule

@@ -5,22 +5,22 @@ import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
-import { InplaceLoadingComponent } from './inplace-loading.component';
+import { BusyIndicatorComponent } from './busy-indicator.component';
 import { ChangeDetectorRefMock } from '../../../test/mocks/change-detector-ref.mock';
-import { ObservableWatched } from '../../rx/index';
+import { ObservableWatched } from '@pratico/rx-extensions';
 import { runUnitTests, runIntegrationTests } from '../../../test/helpers';
 
 
-describe('InplaceLoadingComponent', () => {
+describe(BusyIndicatorComponent.name, () => {
 
   let changeDetectorRefMock: ChangeDetectorRef;
-  let inplaceLoadingComponent: InplaceLoadingComponent;
+  let inplaceLoadingComponent: BusyIndicatorComponent;
   let observable: ObservableWatched<any>;
   let observer: Observer<any>;
   beforeEach(() => {
     changeDetectorRefMock = <any>new ChangeDetectorRefMock();
-    inplaceLoadingComponent = new InplaceLoadingComponent(<any>changeDetectorRefMock);
-    observable = <ObservableWatched<any>>(new Observable((_observer) => {
+    inplaceLoadingComponent = new BusyIndicatorComponent(<any>changeDetectorRefMock);
+    observable = <ObservableWatched<any>>(<any>new Observable((_observer) => {
       observer = _observer;
     }));
   });
@@ -59,8 +59,9 @@ describe('InplaceLoadingComponent', () => {
 
     @Component({
       selector: 'pratico-not-used',
-      template: `<pratico-inplace-loading
-                        (afterLoad)="loadingFinished()" #loadingComp [observable]="observable">{{loadingText}}</pratico-inplace-loading>`
+      template: `<pratico-busy-indicator
+                        (afterLoad)="loadingFinished()" #loadingComp
+                        [observable]="observable">{{loadingText}}</pratico-busy-indicator>`
     })
     class HostComponent {
       observable: Observable<any>;
@@ -75,7 +76,7 @@ describe('InplaceLoadingComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [HostComponent, InplaceLoadingComponent]
+        declarations: [HostComponent, BusyIndicatorComponent]
       }).compileComponents();
       fixture = TestBed.createComponent(HostComponent);
       fixture.autoDetectChanges();
@@ -84,12 +85,12 @@ describe('InplaceLoadingComponent', () => {
     describe('Content Projection', () => {
 
       it('projects content into the loading html', () => {
-        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-busy-indicator'));
         expect(elLoadingCmp.nativeElement.textContent).toEqual('Processing...');
       });
 
       it('updates element content if expression changes', () => {
-        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-busy-indicator'));
         expect(elLoadingCmp.nativeElement.textContent).toEqual('Processing...');
         fixture.componentInstance.loadingText = 'ABC';
         fixture.detectChanges();
@@ -99,28 +100,28 @@ describe('InplaceLoadingComponent', () => {
 
     describe('display behavior', () => {
       it('display is "none" when observable is not running', () => {
-        fixture.componentInstance.observable = observable;
-        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
+        fixture.componentInstance.observable = <any>observable;
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-busy-indicator'));
         expect(elLoadingCmp.nativeElement.style.display).toEqual('none');
       });
 
       it('display is "inline-block" when observable is running', () => {
-        fixture.componentInstance.observable = observable;
+        fixture.componentInstance.observable = <any>observable;
         fixture.detectChanges();
         observable.subscribe(() => { });
         observer.next(1);
         fixture.detectChanges();
-        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-busy-indicator'));
         expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
       });
 
 
       it('display is "none" after observable completes', () => {
-        fixture.componentInstance.observable = observable;
+        fixture.componentInstance.observable = <any>observable;
         fixture.detectChanges();
         observable.subscribe(() => { });
         fixture.detectChanges();
-        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-inplace-loading'));
+        const elLoadingCmp = fixture.debugElement.query(By.css('pratico-busy-indicator'));
         expect(elLoadingCmp.nativeElement.style.display).toEqual('inline-block');
         observer.complete();
         fixture.detectChanges();
@@ -128,7 +129,7 @@ describe('InplaceLoadingComponent', () => {
       });
 
       it('emits afterLoad event', () => {
-        fixture.componentInstance.observable = observable;
+        fixture.componentInstance.observable = <any>observable;
         fixture.detectChanges();
         observable.subscribe(() => { });
 
