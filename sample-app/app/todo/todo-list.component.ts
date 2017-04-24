@@ -1,6 +1,6 @@
   import * as _ from 'lodash';
 import { TodoService } from './todo.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.model';
 
 @Component({
@@ -32,7 +32,7 @@ export class TodoListComponent implements OnInit {
     todoLists: string[];
 
     // This part is a little weird. @Inject shouldnt be necessary with TS, but it is with fuse-box
-    constructor( @Inject(TodoService) private todoService: TodoService) { }
+    constructor(private todoService: TodoService) { }
 
     ngOnInit() {
         this.todoLists = ['All', 'Pending', 'Done'];

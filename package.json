@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test UNIT_TESTS=true jest --watchAll",
+    "test:it": "cross-env INTEGRATION_TESTS=true yarn test",
     "ci": "yarn lint && cross-env NODE_ENV=test jest --coverage",
     "build": "webpack --progress",
     "lint": "tslint --config tslint.json 'src/**/*.ts' 'sample-app/app/**/*.ts'  -e 'src/monaco.d.ts'",

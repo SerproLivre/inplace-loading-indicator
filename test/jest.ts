@@ -24,17 +24,18 @@ import {
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 
 global['preparedTetsts'] = false;
 
 
 if (!global['preparedTetsts'] && isIntegrationTestEnabled()) {
+  console.log('XXXXXXXXXAAAAAAAAAAAAAAAAAAAAAA AQUI!');
   global['preparedTetsts'] = true;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-  });
+  }));
 
   afterEach(() => {
     TestBed.resetTestEnvironment();
