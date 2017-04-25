@@ -1,0 +1,9 @@
+{
+  "extends": "../../../common/tsconfig.umd",
+  "compilerOptions": {
+    "rootDir": "./"
+  },
+  "exclude": [
+    "./**/*.spec.ts"
+  ]
+}

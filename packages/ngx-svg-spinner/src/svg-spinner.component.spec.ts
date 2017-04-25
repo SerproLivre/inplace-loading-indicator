@@ -1,13 +1,13 @@
 import { SvgSpinnerComponent } from './svg-spinner.component';
 import { runUnitTests, runIntegrationTests } from '../../../test/helpers';
-import { ImageAssetsLoader } from '../services/image-assets-loader.service';
+import { ImageAssetsLoader } from './image-assets-loader.service';
 import { ImageAssetsLoaderMock } from '../../../test/mocks/image-assets-loader.mock';
 import { DomSanitizerMock } from '../../../test/mocks/dom-sanitizer.mock';
 import { DomSanitizer, By } from '@angular/platform-browser';
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 import { ChangeDetectorRef } from '@angular/core';
 import { ChangeDetectorRefMock } from '../../../test/mocks/change-detector-ref.mock';
-import { BALL_SVG } from '../../assets/icons/svg-icons';
+import { BALL_SVG } from './assets/icons/svg-icons';
 
 
 describe(SvgSpinnerComponent.name, () => {

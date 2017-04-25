@@ -1,8 +1,7 @@
 "use strict";
 
 /**
- *
- * Builds a package of @pratico
+ * @pratico script
  * from https://github.com/robisim74/angular-library-starter
  */
 
@@ -14,24 +13,60 @@ const Template = require('template-js')
 
 var program = require('commander');
 
+let cmdName = null;
+
+function validateProjectPath(projectPath) {
+  if (!fs.existsSync(projectPath)) {
+    echo(chalk.red(`Project does not exists`));
+    process.exit(27);
+  }
+}
+
 program
   .version('0.0.1')
   .command('build [package]')
+  .description("builds a project")
   .action((pkg, cmd) => {
+    cmdName = cmd.name();
     let projectPath = path.join(process.cwd(), pkg);
-    if (!fs.existsSync(projectPath)) {
-      echo(chalk.red(`Project does not exists`));
-      process.exit(27);
-    }
-    echo(chalk.blue(`Project exists`));
+    validateProjectPath(projectPath);
+    echo(chalk.blue(`Project "${pkg}" exists`));
     build(projectPath);
   })
 
+program.command('publish [package] [version]')
+  .description('publish the package')
+  .action((pkg, version, cmd) => {
+    cmdName = cmd.name();
+    let projectPath = path.join(process.cwd(), pkg);
+    validateProjectPath(projectPath);
+    echo(chalk.blue(`Project "${pkg}" exists`));
+    publish(pkg, version, projectPath);
+  });
 program.parse(process.argv);
 
 
+if (!cmdName) {
+  program.help();
+}
 
+function publish(pkg, version, packagePath) {
+  const MANAGE_VERSION_BINARY = path.resolve(__dirname, '../node_modules/.bin/manage-version');
+  echo(`Publishing npm package: ${pkg}`);
 
+  cd(path.join(packagePath, './dist'));
+
+  echo(`Updating package minor version...`)
+
+  if (exec(`${MANAGE_VERSION_BINARY} update patch`)) {
+    let result = exec(`npm publish ./ --access public `)
+    if (result) {
+      echo(chalk.green(`Package: ${pkg} published successfully`));
+    } else {
+      echo(chalk.red(`Error publishing "${pkg}": ${JSON.stringify(result)}`));
+    }
+  }
+}
 
 function build(packagePath) {
 
@@ -52,8 +87,17 @@ function build(packagePath) {
     fs.writeFileSync(ROLLUP_CONFIG_FOR_PACKAGE, rollupConfigContent.toString(), 'utf8');
   }
 
+  const ROLLUP_BINARY = path.resolve(__dirname, '../node_modules/.bin/rollup');
+  const TSLINT_BINARY = path.resolve(__dirname, '../node_modules/.bin/tslint');
+  const NGC_BINARY = path.resolve(__dirname, '../node_modules/.bin/ngc');
+  const UGLIFY_BINARY = path.resolve(__dirname, '../node_modules/.bin/uglifyjs');
+  const TSC_BINARY = path.resolve(__dirname, '../node_modules/.bin/tsc');
+
+  console.log('ROLLUP BINARY', ROLLUP_BINARY);
+
   cd(packagePath);
 
+  exec('yarn install');
 
   exec('echo "PWD: $PWD"');
 
@@ -67,40 +111,40 @@ function build(packagePath) {
   // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
   // https://github.com/mgechev/codelyzer
   echo(`Start TSLint`);
-  exec(`tslint --project ./tsconfig.json --type-check ./src/**/*.ts`);
+  exec(`${TSLINT_BINARY} --project ./tsconfig.json --type-check ./src/**/*.ts`);
   echo(chalk.green(`TSLint completed`));
 
   /* Aot compilation: ES2015 sources */
   echo(`Start AoT compilation`);
   //exec(`ngc -p tsconfig-build.json`);
-  exec(`ngc -p ${path.join(packagePath, 'src/tsconfig.aot.json')}`);
+  exec(`${NGC_BINARY} -p ${path.join(packagePath, 'src/tsconfig.aot.json')}`);
   echo(chalk.green(`AoT compilation completed`));
 
   /* Creates bundles: ESM/ES5 and UMD bundles */
   echo(`Start bundling`);
   echo(`Rollup package`);
-  exec(`rollup -i ${NPM_DIR}/index.js -o ${MODULES_DIR}/${PACKAGE}.js --sourcemap`, {
+  exec(`${ROLLUP_BINARY} -i ${NPM_DIR}/index.js -o ${MODULES_DIR}/${PACKAGE}.js --sourcemap`, {
     silent: false
   });
   exec(`node ${path.join(__dirname, './map-sources')} -f ${MODULES_DIR}/${PACKAGE}.js`);
 
   echo(`Downleveling ES2015 to ESM/ES5`);
   cp(`${MODULES_DIR}/${PACKAGE}.js`, `${MODULES_DIR}/${PACKAGE}.es5.ts`);
-  exec(`tsc ${MODULES_DIR}/${PACKAGE}.es5.ts --target es5 --module es2015 --noLib --sourceMap`, {
+  exec(`${TSC_BINARY} ${MODULES_DIR}/${PACKAGE}.es5.ts --target es5 --module es2015 --noLib --sourceMap`, {
     silent: false
   });
   exec(`node ${path.join(__dirname, './map-sources')} -f ${MODULES_DIR}/${PACKAGE}.es5.js`);
   rm(`-f`, `${MODULES_DIR}/${PACKAGE}.es5.ts`);
 
   echo(`Run Rollup conversion on package`);
-  exec(`rollup -c rollup.config.js --sourcemap`, {
+  exec(`${ROLLUP_BINARY} -c rollup.config.js --sourcemap`, {
     silent: false
   });
   exec(`node ${path.join(__dirname, './map-sources')} -f ${BUNDLES_DIR}/${PACKAGE}.umd.js`);
 
   echo(`Minifying`);
   cd(`${BUNDLES_DIR}`);
-  exec(`uglifyjs -c --screw-ie8 --comments -o ${PACKAGE}.umd.min.js --source-map ${PACKAGE}.umd.min.js.map --source-map-include-sources ${PACKAGE}.umd.js`, {
+  exec(`${UGLIFY_BINARY} -c --screw-ie8 --comments -o ${PACKAGE}.umd.min.js --source-map ${PACKAGE}.umd.min.js.map --source-map-include-sources ${PACKAGE}.umd.js`, {
     silent: false
   });
   exec(`node ${path.join(__dirname, './map-sources')} -f ${PACKAGE}.umd.min.js`);

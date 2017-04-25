@@ -1,7 +1,8 @@
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { ImageAssetsLoader } from '../services/image-assets-loader.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { svgAsEmbededResource } from '../../helpers/svg-as-embeded-resource';
+
+import { ImageAssetsLoader } from './image-assets-loader.service';
+import { svgAsEmbededResource } from './svg-as-embeded-resource';
 
 /**
  * SvgSpinnerComponent shows a svg spinner passing the name of the spinner or the svg spinner

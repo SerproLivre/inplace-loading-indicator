@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { svgAsEmbededResource } from '../../helpers/svg-as-embeded-resource';
+import { svgAsEmbededResource } from './svg-as-embeded-resource';
 
 export interface AssetsResourcesUrls {
   [name: string]: string;
@@ -16,7 +16,7 @@ import {
   ORANGE_LOADING_SVG,
   ROLLING_SVG,
   SQUARES_SVG
-} from '../../assets/icons/svg-icons';
+} from './assets/icons/svg-icons';
 
 export const EMBEDDED_IMAGE_RESOURCES: AssetsResourcesUrls = {
   'ball': BALL_SVG,

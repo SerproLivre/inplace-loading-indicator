@@ -1,6 +1,6 @@
 {
   "name": "@pratico/ngx-svg-spinner",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "Svg Spinners",
   "main": "./bundles/pratico.ngx-svg-spinner.umd.js",
   "module": "./modules/pratico.ngx-svg-spinner.es5.js",
@@ -13,7 +13,7 @@
   "typings": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pratico-web/ngx-svg-spinner.git"
+    "url": "git+https://github.com/pratico-web/pratico-packages.git"
   },
   "keywords": [
     "rxjs",
@@ -23,9 +23,8 @@
   "author": "Abner Oliveira",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pratico-web/ngx-svg-spinner/issues"
+    "url": "hhttps://github.com/pratico-web/pratico-packages/issues"
   },
-  "homepage": "https://github.com/pratico-web/ngx-svg-spinner#readme",
   "peerDependencies": {
     "@angular/core": "^2.4.8",
     "@angular/platform-browser": "^2.4.8"
