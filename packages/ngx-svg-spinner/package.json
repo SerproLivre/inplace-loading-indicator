@@ -1,0 +1,67 @@
+{
+  "name": "@pratico/ngx-svg-spinner",
+  "version": "1.0.4",
+  "description": "Svg Spinners",
+  "main": "./bundles/pratico.ngx-svg-spinner.umd.js",
+  "module": "./modules/pratico.ngx-svg-spinner.es5.js",
+  "es2015": "./modules/pratico.ngx-svg-spinner.js",
+  "private": false,
+  "scripts": {
+    "prepublish": "rm -rf dist/assets",
+    "test": "../../node_modules/.bin/jest"
+  },
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pratico-web/ngx-svg-spinner.git"
+  },
+  "keywords": [
+    "rxjs",
+    "pratico",
+    "pratical"
+  ],
+  "author": "Abner Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pratico-web/ngx-svg-spinner/issues"
+  },
+  "homepage": "https://github.com/pratico-web/ngx-svg-spinner#readme",
+  "peerDependencies": {
+    "@angular/core": "^2.4.8",
+    "@angular/platform-browser": "^2.4.8"
+  },
+  "jest": {
+    "globals": {
+      "__TS_CONFIG__": "../../tsconfig.json"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "svg"
+    ],
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/index.ts",
+      "!src/**/*.svg",
+      "!src/**/*.sketch.ts",
+      "!src/**/index.ts",
+      "!src/**/*.module.ts",
+      "!**/node_modules"
+    ],
+    "coverageDirectory": "./coverage",
+    "coverageReporters": [
+      "json",
+      "html",
+      "text"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>../../test/jest.ts",
+    "transform": {
+      "\\.(svg)$": "<rootDir>../../test/svg-file-transformer.js",
+      "^.+\\.(ts|tsx|js|html)$": "<rootDir>../..//node_modules/ts-jest/preprocessor.js"
+    },
+    "testResultsProcessor": "<rootDir>../../node_modules/ts-jest/coverageprocessor.js",
+    "verbose": true,
+    "testRegex": ".*\\.spec\\.(ts)$"
+  }
+}
