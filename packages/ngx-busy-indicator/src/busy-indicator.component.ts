@@ -5,18 +5,7 @@ import {
 
 import { ObservableWatched, ObservableWatcher } from '@pratico/rx-extensions';
 
-/**
- * Component which shows a svg loading indicator while a observable is executing
- *
- * @export
- * @class InplaceLoadingComponent
- * @implements {OnChanges}
- * @example ```
- *    <pratico-inplace-loading>Processing...</pratico-inplace-loading>
- *    or
- *    <pratico-inplace-loading><pratico-spinner spinner="balls"></pratico-spinner></pratico-inplace-loading>
- * ```
- */
+
 @Component({
   selector: 'pratico-busy-indicator',
   template: `<ng-content></ng-content>`,

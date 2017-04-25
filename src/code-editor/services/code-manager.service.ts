@@ -10,7 +10,7 @@ import { Directive, Component, Injectable } from '@angular/core';
 
 
 @Injectable()
-export class SomeService2 {
+export class SomePraticoService {
   doesSomething() {
     console.log('Does something...');
   }

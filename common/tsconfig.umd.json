@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "noUnusedLocals": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2016"],
+    "rootDir": "./",
+    "sourceRoot": "./",
+    "mapRoot": "./",
+    "sourceMap": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "../dist",
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "jasmine",
+      "lodash",
+      "webpack"
+    ]
+  },
+  "exclude": [
+    "./**/*.spec.ts"
+  ]
+}

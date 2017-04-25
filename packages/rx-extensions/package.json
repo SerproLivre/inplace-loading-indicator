@@ -1,18 +1,23 @@
 {
-  "name": "@pratico/ngx-busy-indicator",
-  "version": "1.0.0",
-  "description": "Template component which only show the inner content while the observable is processing",
-  "main": "dist/index.js",
+  "name": "@pratico/rx-extensions",
+  "version": "1.0.2",
+  "description": "Some pratical rx extensions.",
+  "main": "./bundles/pratico.rx-extensions.umd.js",
+  "module": "./modules/pratico.rx-extensions.es5.js",
+  "es2015": "./modules/pratico.rx-extensions.js",
   "private": false,
   "scripts": {
     "rmdist": "../../node_modules/.bin/rimraf ./dist",
-    "prepublish": "yarn rmdist && ../../node_modules/.bin/tsc",
+    "rm-ngc-residual": "../../node_modules/.bin/rimraf dist/node_modules",
+    "build:aot": "yarn rmdist && ../../node_modules/.bin/ngc -p src/tsconfig.aot.json && yarn rm-ngc-residual",
+    "build:umd": "../../node_modules/.bin/webpack",
+    "prepublish": "yarn build:aot && yarn build:umd",
     "test": "../../node_modules/.bin/jest"
   },
-  "typings": "dist/index.d.ts",
+  "typings": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pratico-web/busy-indicator.git"
+    "url": "git+https://github.com/pratico-web/rx.git"
   },
   "keywords": [
     "rxjs",
@@ -25,7 +30,7 @@
     "url": "https://github.com/pratico-web/rx/issues"
   },
   "homepage": "https://github.com/pratico-web/rx#readme",
-  "devDependencies": {
+  "peerDependencies": {
     "rxjs": "^5.3.0"
   },
   "jest": {

@@ -1,37 +1,40 @@
 import * as path from 'path';
 const nodeExternals = require('webpack-node-externals');
 
-export function getBuildConfig(outputFileName: string, libraryName: string) {
+export function getBuildConfig(config: {
+    outputFileName: string,
+    libraryName: string,
+    entryFile: string,
+    outputPath: string,
+    tsConfigPath: string
+  }
+) {
 
   return {
-    entry: path.join(__dirname, '../src/index.ts'),
+    entry: config.entryFile,
     devtool: 'source-map',
     target: 'node',
     externals: [
       nodeExternals({
+        modulesDir: path.join(__dirname, '../node_modules')
       })
     ],
     output: {
-      path: path.join(__dirname, '../dist'),
-      filename: outputFileName,
-      // library: libraryName,
+      path: config.outputPath,
+      filename: config.outputFileName,
+      library: config.libraryName,
       libraryTarget: 'commonjs',
       // umdNamedDefine: true
     },
     module: {
       loaders: [
         {
-          test: /(\.jsx|\.js)$/,
-          loader: 'babel',
-          exclude: /(node_modules|bower_components)/
-        },
-        {
           test: /(\.ts)$/,
           loader: 'awesome-typescript-loader',
           query: {
             useForkChecker: true,
             //transpileOnly: true,
-            configFileName: path.resolve(__dirname, '../src/tsconfig.umd.json')
+            configFileName: config.tsConfigPath
           }
         }, {
             test: /\.svg$/i,

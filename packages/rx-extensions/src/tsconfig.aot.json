@@ -1,0 +1,16 @@
+{
+  "extends": "../../../common/tsconfig.aot",
+  "compilerOptions": {
+    "outDir": "../dist",
+    "sourceRoot": "./",
+    "rootDir": "./"
+  },
+  "exclude": [
+    "**/*.spec.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "../dist",
+    "skipMetadataEmit": false,
+    "strictMetadataEmit": true
+  }
+}

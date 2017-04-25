@@ -1,7 +1,6 @@
-import { EventEmitter } from '@angular/core';
-
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 
@@ -19,8 +18,8 @@ export interface ObservableWatched<T> extends Observable<T> {
 export class ObservableWatcher<T> {
 
   processing = false;
-  onStarted: EventEmitter<void> = new EventEmitter<void>();
-  onCompleted: EventEmitter<void> = new EventEmitter<void>();
+  onStarted: Subject<void> = new Subject<void>();
+  onCompleted: Subject<void> = new Subject<void>();
   observable: ObservableWatched<T>;
   observer: Observer<any>;
   private _debug = false;
@@ -52,7 +51,7 @@ export class ObservableWatcher<T> {
    * Creates an instance of ObservableWatcher.
    * @param {Observable<any>} originObservable
    *
-   * @memberOf ObservableWatcher
+   * @m'em'berOf ObservableWatcher
    */
   constructor(originObservable: Observable<any>) {
     if (!originObservable) {
@@ -92,7 +91,7 @@ export class ObservableWatcher<T> {
     originObservable.subscribe = <any>(function (nextOriginal, errorOriginal, completeOriginal) {
       __this.console.log('subscribe called!');
       __this.processing = true;
-      __this.onStarted.emit();
+      __this.onStarted.next();
       const error = function () {
         __this.errorHandler.apply(__this, arguments);
         if (errorOriginal) {
