@@ -1,5 +1,5 @@
 {
-  "extends": "../../../common/tsconfig.aot",
+  "extends": "../../../../common/tsconfig.aot",
   "compilerOptions": {
     "outDir": "../dist",
     "sourceRoot": "./",

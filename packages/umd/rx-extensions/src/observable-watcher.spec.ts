@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
-import { ObservableWatcher, ObservableWatched } from './observable-watcher';
+import { ObservableWatcher, WatchedObservable } from './observable-watcher';
 
 describe(ObservableWatcher.name, () => {
-    let observable: ObservableWatched<any>;
+    let observable: WatchedObservable<any>;
 
     beforeEach(() => {
         observable = ObservableWatcher.watch<any>(Observable.of(1));

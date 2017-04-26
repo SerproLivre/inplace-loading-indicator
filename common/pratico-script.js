@@ -133,7 +133,8 @@ function buildUmd(packagePath) {
   // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
   // https://github.com/mgechev/codelyzer
   echo(`Start TSLint`);
-  exec(`${TSLINT_BINARY} --project ./tsconfig.json --type-check ./src/**/*.ts`);
+  echo(`${TSLINT_BINARY} --project ${path.join(packagePath, './tsconfig.json')}`);
+  exec(`${TSLINT_BINARY} --project ${path.join(packagePath, './tsconfig.json')}`);
   echo(chalk.green(`TSLint completed`));
 
   /* Aot compilation: ES2015 sources */

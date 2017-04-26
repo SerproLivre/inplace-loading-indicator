@@ -1,1 +1,1 @@
-export { ObservableWatched, ObservableWatcher } from './observable-watcher';
+export { WatchedObservable, ObservableWatcher } from './observable-watcher';

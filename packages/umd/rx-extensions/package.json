@@ -1,6 +1,6 @@
 {
   "name": "@pratico/rx-extensions",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Some pratical rx extensions.",
   "main": "./bundles/pratico.rx-extensions.umd.js",
   "module": "./modules/pratico.rx-extensions.es5.js",

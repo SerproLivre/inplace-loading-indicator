@@ -1,10 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 
-export interface ObservableWatched<T> extends Observable<T> {
+export interface WatchedObservable<T> extends Observable<T> {
   watcher: ObservableWatcher<T>;
 }
 
@@ -18,9 +19,9 @@ export interface ObservableWatched<T> extends Observable<T> {
 export class ObservableWatcher<T> {
 
   processing = false;
-  onStarted: Subject<void> = new Subject<void>();
+  onStarted: ReplaySubject<void> = new ReplaySubject<void>(1);
   onCompleted: Subject<void> = new Subject<void>();
-  observable: ObservableWatched<T>;
+  observable: WatchedObservable<T>;
   observer: Observer<any>;
   private _debug = false;
 
@@ -44,7 +45,7 @@ export class ObservableWatcher<T> {
    */
   static watch<U>(observable: Observable<U>) {
     new ObservableWatcher<U>(observable);
-    return <ObservableWatched<U>>observable;
+    return <WatchedObservable<U>>observable;
   }
 
   /**
@@ -85,13 +86,13 @@ export class ObservableWatcher<T> {
 
   private configureObservable(originObservable: Observable<any>) {
     const originalObservableSubscribe = originObservable.subscribe;
-    (<ObservableWatched<T>>originObservable).watcher = this;
+    (<WatchedObservable<T>>originObservable).watcher = this;
     this.console.log('subscribe configured');
     const __this = this;
     originObservable.subscribe = <any>(function (nextOriginal, errorOriginal, completeOriginal) {
       __this.console.log('subscribe called!');
       __this.processing = true;
-      __this.onStarted.next();
+      __this.onStarted.next(null);
       const error = function () {
         __this.errorHandler.apply(__this, arguments);
         if (errorOriginal) {
