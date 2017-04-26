@@ -1,0 +1,31 @@
+{
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/index.ts",
+      "!src/**/*.svg",
+      "!src/**/*.sketch.ts",
+      "!src/**/index.ts",
+      "!src/**/*.module.ts",
+      "!**/node_modules"
+    ],
+    "coverageDirectory": "./coverage",
+    "coverageReporters": [
+      "json",
+      "html",
+      "text"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/test/jest.ts",
+    "transform": {
+      "^.+\\.(ts|tsx|js|html)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+    "verbose": true,
+    "testRegex": ".*\\.spec\\.(ts)$"
+  }
+}

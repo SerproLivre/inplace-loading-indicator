@@ -1,0 +1,34 @@
+{
+  "name": "@pratico/ngx-code-editor",
+  "version": "1.0.8",
+  "description": "Monaco Code Editor",
+  "main": "./bundles/pratico.ngx-code-editor.umd.js",
+  "module": "./modules/pratico.ngx-code-editor.es5.js",
+  "es2015": "./modules/pratico.ngx-code-editor.js",
+  "private": false,
+  "scripts": {
+    "prepublish": "rm -rf dist/assets",
+    "test": "../../node_modules/.bin/jest"
+  },
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pratico-web/pratico-packages.git"
+  },
+  "keywords": [
+    "monaco",
+    "code-editor",
+    "pratico",
+    "pratical"
+  ],
+  "author": "Abner Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "hhttps://github.com/pratico-web/pratico-packages/issues"
+  },
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "monaco-editor": "^0.8.3"
+  }
+}

@@ -15,11 +15,19 @@ var program = require('commander');
 
 let cmdName = null;
 
-function validateProjectPath(projectPath) {
-  if (!fs.existsSync(projectPath)) {
-    echo(chalk.red(`Project does not exists`));
-    process.exit(27);
+function checkProjectPath(pkg) {
+  let projectRoot = exec('npm prefix').split('\n')[0]
+  console.log('Project Root: ', projectRoot);
+  let cjsProjectPath = path.join(projectRoot, 'packages/cjs', pkg);
+  let umdProjectPath = path.join(projectRoot, 'packages/umd', pkg);
+  if (fs.existsSync(cjsProjectPath)) {
+    return cjsProjectPath;
   }
+  if (fs.existsSync(umdProjectPath)) {
+    return umdProjectPath;
+  }
+  echo(chalk.red(`Project does not exists`));
+  process.exit(27);
 }
 
 program
@@ -28,8 +36,7 @@ program
   .description("builds a project")
   .action((pkg, cmd) => {
     cmdName = cmd.name();
-    let projectPath = path.join(process.cwd(), pkg);
-    validateProjectPath(projectPath);
+    let projectPath = checkProjectPath(pkg);
     echo(chalk.blue(`Project "${pkg}" exists`));
     build(projectPath);
   })
@@ -38,8 +45,7 @@ program.command('publish [package] [version]')
   .description('publish the package')
   .action((pkg, version, cmd) => {
     cmdName = cmd.name();
-    let projectPath = path.join(process.cwd(), pkg);
-    validateProjectPath(projectPath);
+    let projectPath = checkProjectPath(pkg);
     echo(chalk.blue(`Project "${pkg}" exists`));
     publish(pkg, version, projectPath);
   });
@@ -59,8 +65,12 @@ function publish(pkg, version, packagePath) {
   echo(`Updating package minor version...`)
 
   if (exec(`${MANAGE_VERSION_BINARY} update patch`)) {
+    /*if (!exec('npm whoami').code == 0) {
+      console.log(chalk.red('Please, you need to login (npm login).'));
+      process.exit(1);
+    }*/
     let result = exec(`npm publish ./ --access public `)
-    if (result) {
+    if (result.code == 0) {
       echo(chalk.green(`Package: ${pkg} published successfully`));
     } else {
       echo(chalk.red(`Error publishing "${pkg}": ${JSON.stringify(result)}`));
@@ -69,8 +79,20 @@ function publish(pkg, version, packagePath) {
 }
 
 function build(packagePath) {
+  if (packagePath.indexOf('umd') >= 0) {
+    buildUmd(packagePath)
+  } else {
+    buildCjs(packagePath);
+  }
+}
 
+function buildCjs(packagePath) {
+  const PACKAGE_NAME = path.basename(packagePath);
+  const TSC_BINARY = path.resolve(__dirname, '../node_modules/.bin/tsc');
+  exec(`${TSC_BINARY} -P ${path.join(packagePath, 'tsconfig.json')} --outDir ${path.join(packagePath, 'dist/')}`)
+}
 
+function buildUmd(packagePath) {
   const PACKAGE_NAME = path.basename(packagePath);
   const PACKAGE_PREFIX = 'pratico.'
   const PACKAGE = `${PACKAGE_PREFIX}${PACKAGE_NAME}`;
@@ -117,6 +139,7 @@ function build(packagePath) {
   /* Aot compilation: ES2015 sources */
   echo(`Start AoT compilation`);
   //exec(`ngc -p tsconfig-build.json`);
+  echo('AOT command:: ', `${NGC_BINARY} -p ${path.join(packagePath, 'src/tsconfig.aot.json')}`);
   exec(`${NGC_BINARY} -p ${path.join(packagePath, 'src/tsconfig.aot.json')}`);
   echo(chalk.green(`AoT compilation completed`));
 
