@@ -11,7 +11,7 @@
     "sass": "./node_modules/.bin/node-sass app/main.scss -o app/",
     "copy-files": "node copy-files.ts",
     "prestart": "./link-node_modules.sh; npm run sass && npm run copy-files",
-    "start": "node_modules/.bin/concurrently \"node_modules/.bin/lite-server\" \"npm run compile-library\" "
+    "start": "node_modules/.bin/concurrently \"node_modules/.bin/lite-server\" "
   },
   "author": "",
   "license": "ISC",
