@@ -6,6 +6,9 @@
   "scripts": {
     "test": "jest"
   },
+  "bin": {
+    "pratico": "./main.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/%40pratico-web/pratico-packages.git"

@@ -4,7 +4,7 @@ import program = require('commander');
 import path = require('path');
 import shelljs = require('shelljs');
 
-export class CjsTypescriptBuilder extends BuilderBase {
+export class UmdTypescriptBuilder extends BuilderBase {
 
   constructor(packagePath: string) {
     super(packagePath);

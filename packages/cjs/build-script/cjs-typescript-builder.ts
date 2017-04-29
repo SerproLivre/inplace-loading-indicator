@@ -10,7 +10,7 @@ export class CjsTypescriptBuilder extends BuilderBase {
     super(packagePath);
   }
 
-  onBuild() {
+  onRun() {
     this.installDependencies();
     this.tsLint();
     this.compileTs();
