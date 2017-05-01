@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "noUnusedLocals": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2015"],
+    "sourceRoot": "src",
+    "inlineSources": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "target": "es5"
+  },
+  "exclude": [
+    "angular-pkg-sources",
+    "node_modules"
+  ]
+}

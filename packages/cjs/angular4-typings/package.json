@@ -1,0 +1,22 @@
+{
+  "name": "@pratico/angular4-typings",
+  "version": "1.0.2",
+  "description": "Angular 4.1 typings bundled in single files",
+  "files": [
+    "typings/angular-common.d.ts",
+    "typings/angular-compiler.d.ts",
+    "typings/angular-core.d.ts",
+    "typings/angular-forms.d.ts",
+    "typings/angular-http.d.ts",
+    "typings/angular-platform-browser-dynamic.d.ts",
+    "typings/angular-platform-browser.d.ts",
+    "typings/angular-router.d.ts"
+  ],
+  "main": "typings/angular-core.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "../../../node_modules/.bin/ts-node generate-typings.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}
