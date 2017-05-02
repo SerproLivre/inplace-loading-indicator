@@ -1,10 +1,8 @@
 import { BuilderBase } from './builder-base';
 import { ShellExecOptions } from './models/shell-exec-options';
-import program = require('commander');
-import path = require('path');
-import shelljs = require('shelljs');
 
-export class CjsTypescriptBuilder extends BuilderBase {
+
+export class UmdTypescriptBuilder extends BuilderBase {
 
   constructor(packagePath: string) {
     super(packagePath);
@@ -16,7 +14,7 @@ export class CjsTypescriptBuilder extends BuilderBase {
     this.compileTs();
   }
 
-  private installDependencies() {
+  protected installDependencies() {
 
     this.shellExec(<ShellExecOptions>{
       command: 'yarn install',
@@ -25,7 +23,7 @@ export class CjsTypescriptBuilder extends BuilderBase {
       errorLabel: 'Error installing dependencies :thumbsdown:'
     });
   }
-  private compileTs() {
+  protected compileTs() {
     this.shellExec(<ShellExecOptions>{
       command: 'tsc',
       label: 'Starting typescript compilation...',
@@ -34,7 +32,27 @@ export class CjsTypescriptBuilder extends BuilderBase {
     });
   }
 
-  private tsLint() {
+  protected rollupFirstBuild() {
+
+  }
+
+  protected rollupConversion() {
+
+  }
+
+  protected   downlevelEs2015Es5() {
+
+  }
+
+  protected   minifyingWithUglify() {
+
+  }
+
+  protected  copyPackageAssets() {
+
+  }
+
+  protected tsLint() {
     this.shellExec(<ShellExecOptions>{
       command: 'tslint',
       label: 'checking code style and rules...',

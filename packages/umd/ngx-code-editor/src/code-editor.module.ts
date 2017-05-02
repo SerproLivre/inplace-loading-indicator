@@ -1,11 +1,11 @@
 import { NgModule, ModuleWithProviders, forwardRef, APP_INITIALIZER, InjectionToken, Type } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { CodeEditorComponent } from './components/code-editor.component';
 import { CodeManager } from './services/code-manager.service';
-import { PraticoBrowserModule } from '@pratico/ngx-browser';
+import { PraticoBrowserModule, WindowRef } from '@pratico/ngx-browser';
 import { CodeEditorConfig } from './services/code-editor.config.service';
 import { MonacoTypingsLoader } from './services/monaco-typings-loader.service';
 import { monacoInitializerFactory } from './services/monaco-initializer.service';
-import { WindowRef } from '@pratico/ngx-browser';
 /**
  * Inspired on:
  * - https://www.npmjs.com/package/ng2-monaco-editor / https://github.com/0plus1/ng2-monaco-editor
@@ -31,6 +31,7 @@ export const PRATICO_CODE_EDITOR_PROVIDERS = [
   entryComponents: [CodeEditorComponent],
   exports: [CodeEditorComponent],
   imports: [
+    HttpModule,
     PraticoBrowserModule.forRoot()
   ]
 })

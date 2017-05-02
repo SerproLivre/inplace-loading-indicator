@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 
 /**
  * Pratico scripts allow to build npm typescript based packages both pure common-js and hybrid (cjs + umd)
@@ -15,9 +15,9 @@
 
 import shelljs = require('shelljs');
 import chalk = require('chalk');
-import fs = require('fs');
-import path = require('path');
-import Template = require('template-js');
+// import fs = require('fs');
+// import path = require('path');
+// import Template = require('template-js');
 
 // import figures | figures-colored
 // titleize | humanize-string | root-check
@@ -40,20 +40,22 @@ import Template = require('template-js');
 // pad-component
 // to use to place textx in the cli-box
 import program = require('commander');
+import { BuilderFactory } from "./builder-factory";
 
 let cmdName = null;
 
 program
   .version('0.0.1')
-  .command('build [package]')
+  .command('build [type]')
   .description('builds a project')
-  .action((pkg, cmd) => {
+  .action((type, cmd) => {
     cmdName = cmd.name();
-    let projectPath = checkProjectPath(pkg);
-    echo(chalk.blue(`Project "${pkg}" exists`));
-    build(projectPath);
-  })
+    let projectbuilder = BuilderFactory.getInstanceFor(type);
+    shelljs.echo(chalk.blue(`Build Project: "Type > "${type}"`));
+    projectbuilder.run();
+  });
 
+program.parse(process.argv);
 
 if (!cmdName) {
   shelljs.echo('No Pratico command specified!');

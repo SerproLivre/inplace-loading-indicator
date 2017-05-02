@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/abner/ngx-pratico#readme",
   "dependencies": {
+    "@pratico/ngx-browser": "^1.0.8",
     "@types/lodash": "^4.14.63",
     "lodash.isempty": "^4.4.0",
     "monaco-editor": "^0.8.3",

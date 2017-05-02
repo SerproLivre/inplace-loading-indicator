@@ -4,10 +4,11 @@
   "description": "Pratico Build Script - Builds pratico script (both pure common-js and cjs+umd)",
   "main": "index.js",
   "scripts": {
+    "build": "ts-node src/main.ts build cjs; chmod +x dist/main.js",
     "test": "jest"
   },
   "bin": {
-    "pratico": "./main.js"
+    "pratico": "./dist/main.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,8 @@
     "@types/shelljs": "^0.7.0",
     "jest": "^19.0.2",
     "ts-jest": "^19.0.13",
-    "ts-node": "^3.0.2"
+    "ts-node": "^3.0.2",
+    "typescript": "^2.3.2"
   },
   "jest": {
     "transform": {
@@ -52,6 +54,7 @@
     "@angular/compiler-cli": "^4.1.0",
     "chalk": "^1.1.3",
     "rimraf": "^2.6.1",
-    "rollup": "^0.41.6"
+    "rollup": "^0.41.6",
+    "tslint": "^5.1.0"
   }
 }

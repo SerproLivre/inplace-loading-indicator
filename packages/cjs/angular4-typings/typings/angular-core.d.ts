@@ -9,7 +9,7 @@ declare module '@angular/core' {
         * @description
         * Entry point from which you should import all public core APIs.
         */
-    export * from '@angular/core/metadata';
+    export { Component, Directive } from '@angular/core/metadata';
     export * from '@angular/core/version';
     export { Class, ClassDefinition, TypeDecorator } from '@angular/core/util/decorators';
     export * from '@angular/core/di';
@@ -56,11 +56,11 @@ declare module '@angular/core' {
 }
 
 declare module '@angular/core/metadata' {
-    export * from './di.d.ts'
-    export * from './directives.d.ts'
-    export * from './lifecycle_hooks.d.ts'
-    export * from './ng_module.d.ts'
-    export * from './view.d.ts'
+    export * from './di'
+    export * from './directives'
+    export * from './lifecycle_hooks'
+    export * from './ng_module'
+    export * from './view'
 }
 
 declare module '@angular/core/version' {
@@ -255,15 +255,15 @@ declare module '@angular/core/util/decorators' {
 }
 
 declare module '@angular/core/di' {
-    export * from './forward_ref.d.ts'
-    export * from './injection_token.d.ts'
-    export * from './injector.d.ts'
-    export * from './metadata.d.ts'
-    export * from './provider.d.ts'
-    export * from './reflective_errors.d.ts'
-    export * from './reflective_injector.d.ts'
-    export * from './reflective_key.d.ts'
-    export * from './reflective_provider.d.ts'
+    export * from './forward_ref'
+    export * from './injection_token'
+    export * from './injector'
+    export * from './metadata'
+    export * from './provider'
+    export * from './reflective_errors'
+    export * from './reflective_injector'
+    export * from './reflective_key'
+    export * from './reflective_provider'
 }
 
 declare module '@angular/core/application_ref' {
@@ -582,25 +582,25 @@ declare module '@angular/core/application_init' {
 }
 
 declare module '@angular/core/zone' {
-    export * from './ng_zone.d.ts'
+    export * from './ng_zone'
 }
 
 declare module '@angular/core/render' {
-    export * from './api.d.ts'
+    export * from './api'
 }
 
 declare module '@angular/core/linker' {
-    export * from './compiler.d.ts'
-    export * from './component_factory.d.ts'
-    export * from './component_factory_resolver.d.ts'
-    export * from './element_ref.d.ts'
-    export * from './ng_module_factory.d.ts'
-    export * from './ng_module_factory_loader.d.ts'
-    export * from './query_list.d.ts'
-    export * from './system_js_ng_module_factory_loader.d.ts'
-    export * from './template_ref.d.ts'
-    export * from './view_container_ref.d.ts'
-    export * from './view_ref.d.ts'
+    export * from './compiler'
+    export * from './component_factory'
+    export * from './component_factory_resolver'
+    export * from './element_ref'
+    export * from './ng_module_factory'
+    export * from './ng_module_factory_loader'
+    export * from './query_list'
+    export * from './system_js_ng_module_factory_loader'
+    export * from './template_ref'
+    export * from './view_container_ref'
+    export * from './view_ref'
 }
 
 declare module '@angular/core/debug/debug_node' {
@@ -751,11 +751,11 @@ declare module '@angular/core/testability/testability' {
 }
 
 declare module '@angular/core/change_detection' {
-    export * from './change_detection.d.ts'
-    export * from './change_detection_util.d.ts'
-    export * from './change_detector_ref.d.ts'
-    export * from './constants.d.ts'
-    export * from './pipe_transform.d.ts'
+    export * from './change_detection'
+    export * from './change_detection_util'
+    export * from './change_detector_ref'
+    export * from './constants'
+    export * from './pipe_transform'
 }
 
 declare module '@angular/core/platform_core_providers' {
@@ -2499,8 +2499,8 @@ declare module '@angular/core/render/api' {
 }
 
 declare module '@angular/core/util' {
-    export * from './decorators.d.ts'
-    export * from './lang.d.ts'
+    export * from './decorators'
+    export * from './lang'
 }
 
 declare module '@angular/core/util/lang' {

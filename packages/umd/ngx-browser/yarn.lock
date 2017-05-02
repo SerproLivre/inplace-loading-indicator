@@ -2,3 +2,6 @@
 # yarn lockfile v1
 
 
+"@pratico/ngx-browser@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@pratico/ngx-browser/-/ngx-browser-1.0.8.tgz#a80aa28966489c94ccb782646454df7ad76db84b"

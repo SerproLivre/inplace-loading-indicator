@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 /**
  * Loads typings into monaco editor
@@ -37,18 +38,22 @@ monaco.editor.create(document.getElementById("container"), {
  */
 @Injectable()
 export class MonacoTypingsLoader {
-  typings: monaco.IDisposable[] = [];
-  constructor() {
-  }
+    typings: monaco.IDisposable[] = [];
+    constructor(private http: Http) {
+    }
 
-  loadTypings() {
-      // monaco.languages.typescript.typescriptDefaults.addExtraLib(this.angularCore, '@types/angular/core/index.d.ts');
-      monaco.languages.typescript.typescriptDefaults.addExtraLib(this.angularIndex, 'node_modules/@angular/core/index.ts');
-  }
+    loadTypings() {
+        ['common', 'platform-browser', 'platform-browser-dynamic', 'core', 'forms', 'http', 'router', 'compiler'].forEach((packageName) => {
+            this.http.get(`https://unpkg.com/@pratico/angular4-typings@1.0.2/typings/angular-${packageName}.d.ts`).subscribe((response) => {
+                monaco.languages.typescript.typescriptDefaults.addExtraLib(response.text(), `node_modules/@angular/${packageName}/index.ts`);
+            });
+        });
+        // monaco.languages.typescript.typescriptDefaults.addExtraLib(this.angularCore, '@types/angular/core/index.d.ts');
+    }
 
 
-  get angularCore() {
-    return `
+    get angularCore() {
+        return `
 declare var module: any;
 
 declare module "@angular/core" {
@@ -92,11 +97,11 @@ declare module "@angular/core" {
         ngOnDestroy(): void;
     }
 }`;
-  }
+    }
 
 
-  get angularIndex() {
-    return `
+    get angularIndex() {
+        return `
     export interface Directive {
         selector?: string;
         inputs?: string[];
@@ -135,5 +140,5 @@ declare module "@angular/core" {
     export abstract class OnDestroy {
         ngOnDestroy(): void;
     }`;
-  }
+    }
 }

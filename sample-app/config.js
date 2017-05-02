@@ -39,10 +39,11 @@ System.config({
     '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
     'lodash': 'npm:lodash/lodash.js',
 
-    '@pratico/ui': 'assets/ngx-pratico.umd.js'
+    '@pratico/ngx-code-editor': 'assets/ngx-pratico.umd.js',
+    '@pratico/ngx-browser': 'assets/ngx-browser.umd.js'
   },
   meta: {
-    '@pratico/ui': {
+    '@pratico/ngx-code-editor': {
       format: 'cjs'
     }
   },

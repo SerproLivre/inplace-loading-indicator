@@ -31,5 +31,8 @@
     "@angular/core": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "monaco-editor": "^0.8.3"
+  },
+  "dependencies": {
+    "@pratico/ngx-browser": "^1.0.8"
   }
 }
