@@ -9,7 +9,7 @@ declare module '@angular/core' {
         * @description
         * Entry point from which you should import all public core APIs.
         */
-    export { Component, Directive } from '@angular/core/metadata';
+    export * from '@angular/core/metadata';
     export * from '@angular/core/version';
     export { Class, ClassDefinition, TypeDecorator } from '@angular/core/util/decorators';
     export * from '@angular/core/di';

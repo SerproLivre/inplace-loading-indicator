@@ -26,12 +26,12 @@ declare module '@angular/platform-browser' {
 }
 
 declare module '@angular/platform-browser/browser' {
-    export * from './browser_adapter.d.ts'
-    export * from './generic_browser_adapter.d.ts'
-    export * from './meta.d.ts'
-    export * from './server-transition.d.ts'
-    export * from './testability.d.ts'
-    export * from './title.d.ts'
+    export * from '@angular/core/browser'
+    export * from '@angular/core/browser'
+    export * from '@angular/core/browser'
+    export * from '@angular/core/browser'
+    export * from '@angular/core/browser'
+    export * from '@angular/core/browser'
 }
 
 declare module '@angular/platform-browser/browser/meta' {

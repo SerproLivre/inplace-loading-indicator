@@ -18,5 +18,8 @@
     "build": "../../../node_modules/.bin/ts-node generate-typings.ts"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "replace-in-file": "^2.5.0"
+  }
 }
