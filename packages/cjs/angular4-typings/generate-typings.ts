@@ -75,22 +75,28 @@ function generateDtsBundle(packageName: string): DtsBundleResult {
     console.log('CHANGED FILES: ', JSON.stringify(changedFiles, null, '\t'));
     return { ok: true };
   } else {
-    handleDtsBundleError(packageName, packageDirectory, scriptResult.stdout, scriptResult.stderr);
+    handleDtsBundleError(packageName, packageDirectory, mainDefinitionFile, scriptResult.stdout, scriptResult.stderr);
     return generateDtsBundle(packageName);
   }
 }
 
-function handleDtsBundleError(packageName: string, packageDirectory: string, stdout: string, stderr: string) {
+function handleDtsBundleError(packageName: string, packageDirectory: string, mainDefinitionFile: string, stdout: string, stderr: string) {
+  console.error(stderr);
   const MISSING_INDEX_REGEXP = /Error: ENOENT: no such file or directory, open '(.+)\/([^/]+)'/;
   const matchResult = MISSING_INDEX_REGEXP.exec(stdout) || MISSING_INDEX_REGEXP.exec(stderr);
   if (matchResult) {
     const directoryWithMissingIndex = matchResult[1];
     shelljs.echo('MISSING INDEX IN DIRECTORY: ', directoryWithMissingIndex);
+    // TODO: replace export line to index to export to each individual file
     try {
+      debugger
       indexFilesGenerated.push(path.join(directoryWithMissingIndex, 'index.d.ts'));
       const createIndexResult = createIndex(directoryWithMissingIndex, packageDirectory);
       exportExpressionsTemp.concat(createIndexResult.temp);
       exportExpressionsFinal.concat(createIndexResult.final);
+      let mainDefinitionFileContent = String(fs.readFileSync(mainDefinitionFile));
+      mainDefinitionFileContent = mainDefinitionFileContent.replace(`export * from './${path.basename(directoryWithMissingIndex)}';`, createIndexResult.temp.join('\n'));
+      fs.writeFileSync(mainDefinitionFile, mainDefinitionFileContent);
     } catch (e) {
       shelljs.echo(chalk.red(`Failed to create index to directory: "${directoryWithMissingIndex}"`));
       process.exit(27);

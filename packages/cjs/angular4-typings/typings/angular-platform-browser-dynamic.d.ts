@@ -4,60 +4,64 @@
 //   ../../../../@angular/compiler
 
 declare module '@angular/platform-browser-dynamic' {
-    import { PlatformRef, Provider } from '@angular/core';
-    export * from '@angular/platform-browser-dynamic/private_export';
-    export { VERSION } from '@angular/platform-browser-dynamic/version';
-    /**
-        * @experimental
-        */
-    export const RESOURCE_CACHE_PROVIDER: Provider[];
-    /**
-        * @stable
-        */
-    export const platformBrowserDynamic: (extraProviders?: Provider[] | undefined) => PlatformRef;
+  export * from '@angular/platform-browser-dynamic/private_export';
+  export * from '@angular/platform-browser-dynamic/version';
+  export * from '@angular/platform-browser-dynamic/platform_providers';
+  export * from '@angular/platform-browser-dynamic/resource_loader/resource_loader_impl';
+  import { PlatformRef, Provider } from '@angular/core';
+  export * from '@angular/platform-browser-dynamic/private_export';
+  export { VERSION } from '@angular/platform-browser-dynamic/version';
+  /**
+      * @experimental
+      */
+  export const RESOURCE_CACHE_PROVIDER: Provider[];
+  /**
+      * @stable
+      */
+  export const platformBrowserDynamic: (extraProviders?: Provider[] | undefined) => PlatformRef;
 }
 
 declare module '@angular/platform-browser-dynamic/private_export' {
-    /**
-      * @license
-      * Copyright Google Inc. All Rights Reserved.
-      *
-      * Use of this source code is governed by an MIT-style license that can be
-      * found in the LICENSE file at https://angular.io/license
-      */
-    export { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS as ɵINTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic/platform_providers';
-    export { ResourceLoaderImpl as ɵResourceLoaderImpl } from '@angular/platform-browser-dynamic/resource_loader/resource_loader_impl';
+  /**
+    * @license
+    * Copyright Google Inc. All Rights Reserved.
+    *
+    * Use of this source code is governed by an MIT-style license that can be
+    * found in the LICENSE file at https://angular.io/license
+    */
+  export { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS as ɵINTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic/platform_providers';
+  export { ResourceLoaderImpl as ɵResourceLoaderImpl } from '@angular/platform-browser-dynamic/resource_loader/resource_loader_impl';
 }
 
 declare module '@angular/platform-browser-dynamic/version' {
-    /**
-        * @module
-        * @description
-        * Entry point for all public APIs of the common package.
-        */
-    import { Version } from '@angular/core';
-    /**
-        * @stable
-        */
-    export const VERSION: Version;
+  /**
+      * @module
+      * @description
+      * Entry point for all public APIs of the common package.
+      */
+  import { Version } from '@angular/core';
+  /**
+      * @stable
+      */
+  export const VERSION: Version;
 }
 
 declare module '@angular/platform-browser-dynamic/platform_providers' {
-    import { Provider } from '@angular/core';
-    export const INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS: Provider[];
+  import { Provider } from '@angular/core';
+  export const INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS: Provider[];
 }
 
 declare module '@angular/platform-browser-dynamic/resource_loader/resource_loader_impl' {
-    /**
-      * @license
-      * Copyright Google Inc. All Rights Reserved.
-      *
-      * Use of this source code is governed by an MIT-style license that can be
-      * found in the LICENSE file at https://angular.io/license
-      */
-    import { ResourceLoader } from '@angular/compiler';
-    export class ResourceLoaderImpl extends ResourceLoader {
-        get(url: string): Promise<string>;
-    }
+  /**
+    * @license
+    * Copyright Google Inc. All Rights Reserved.
+    *
+    * Use of this source code is governed by an MIT-style license that can be
+    * found in the LICENSE file at https://angular.io/license
+    */
+  import { ResourceLoader } from '@angular/compiler';
+  export class ResourceLoaderImpl extends ResourceLoader {
+    get(url: string): Promise<string>;
+  }
 }
 
