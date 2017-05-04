@@ -1,6 +1,6 @@
 {
   "name": "@pratico/angular4-typings",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Angular 4.1 typings bundled in single files",
   "files": [
     "typings/angular-common.d.ts",
