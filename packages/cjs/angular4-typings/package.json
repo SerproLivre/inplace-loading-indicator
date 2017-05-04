@@ -1,6 +1,6 @@
 {
   "name": "@pratico/angular4-typings",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular 4.1 typings bundled in single files",
   "files": [
     "typings/angular-common.d.ts",
@@ -14,8 +14,8 @@
   ],
   "main": "typings/angular-core.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
-    "build": "../../../node_modules/.bin/ts-node generate-typings.ts"
+    "xprepublish": "npm run build",
+    "xbuild": "../../../node_modules/.bin/ts-node generate-typings.ts"
   },
   "author": "",
   "license": "ISC",
