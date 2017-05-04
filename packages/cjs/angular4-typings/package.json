@@ -1,6 +1,6 @@
 {
   "name": "@pratico/angular4-typings",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Angular 4.1 typings bundled in single files",
   "files": [
     "typings/angular-common.d.ts",
@@ -10,7 +10,8 @@
     "typings/angular-http.d.ts",
     "typings/angular-platform-browser-dynamic.d.ts",
     "typings/angular-platform-browser.d.ts",
-    "typings/angular-router.d.ts"
+    "typings/angular-router.d.ts",
+    "typings/angular-rxjs.d.ts"
   ],
   "main": "typings/angular-core.d.ts",
   "scripts": {
