@@ -55,7 +55,7 @@ export class MonacoInitializer {
       emitDecoratorMetadata: true,
       experimentalDecorators: true,
       typeRoots: [
-        '@types'
+        'node_modules/@types'
       ]
     });
     this.typingsLoader.loadTypings();

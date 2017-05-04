@@ -667,7 +667,7 @@ declare module "rxjs/observable/bindCallback" {
 }
 declare module "rxjs/add/observable/bindCallback" {
     import { bindCallback as staticBindCallback } from "rxjs/observable/bindCallback";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let bindCallback: typeof staticBindCallback;
         }
@@ -710,7 +710,7 @@ declare module "rxjs/observable/bindNodeCallback" {
 }
 declare module "rxjs/add/observable/bindNodeCallback" {
     import { bindNodeCallback as staticBindNodeCallback } from "rxjs/observable/bindNodeCallback";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let bindNodeCallback: typeof staticBindNodeCallback;
         }
@@ -899,7 +899,7 @@ declare module "rxjs/observable/combineLatest" {
 }
 declare module "rxjs/add/observable/combineLatest" {
     import { combineLatest as combineLatestStatic } from "rxjs/observable/combineLatest";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let combineLatest: typeof combineLatestStatic;
         }
@@ -961,7 +961,7 @@ declare module "rxjs/observable/concat" {
 }
 declare module "rxjs/add/observable/concat" {
     import { concat as concatStatic } from "rxjs/observable/concat";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let concat: typeof concatStatic;
         }
@@ -1035,7 +1035,7 @@ declare module "rxjs/observable/defer" {
 }
 declare module "rxjs/add/observable/defer" {
     import { defer as staticDefer } from "rxjs/observable/defer";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let defer: typeof staticDefer;
         }
@@ -1047,7 +1047,7 @@ declare module "rxjs/observable/empty" {
 }
 declare module "rxjs/add/observable/empty" {
     import { empty as staticEmpty } from "rxjs/observable/empty";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let empty: typeof staticEmpty;
         }
@@ -1092,7 +1092,7 @@ declare module "rxjs/observable/forkJoin" {
 }
 declare module "rxjs/add/observable/forkJoin" {
     import { forkJoin as staticForkJoin } from "rxjs/observable/forkJoin";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let forkJoin: typeof staticForkJoin;
         }
@@ -1368,7 +1368,7 @@ declare module "rxjs/observable/from" {
 }
 declare module "rxjs/add/observable/from" {
     import { from as staticFrom } from "rxjs/observable/from";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let from: typeof staticFrom;
         }
@@ -1417,7 +1417,7 @@ declare module "rxjs/observable/fromEvent" {
 }
 declare module "rxjs/add/observable/fromEvent" {
     import { fromEvent as staticFromEvent } from "rxjs/observable/fromEvent";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let fromEvent: typeof staticFromEvent;
         }
@@ -1496,7 +1496,7 @@ declare module "rxjs/observable/fromEventPattern" {
 }
 declare module "rxjs/add/observable/fromEventPattern" {
     import { fromEventPattern as staticFromEventPattern } from "rxjs/observable/fromEventPattern";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let fromEventPattern: typeof staticFromEventPattern;
         }
@@ -1508,7 +1508,7 @@ declare module "rxjs/observable/fromPromise" {
 }
 declare module "rxjs/add/observable/fromPromise" {
     import { fromPromise as staticFromPromise } from "rxjs/observable/fromPromise";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let fromPromise: typeof staticFromPromise;
         }
@@ -1662,7 +1662,7 @@ declare module "rxjs/observable/GenerateObservable" {
 }
 declare module "rxjs/add/observable/generate" {
     import { GenerateObservable } from "rxjs/observable/GenerateObservable";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let generate: typeof GenerateObservable.create;
         }
@@ -1830,7 +1830,7 @@ declare module "rxjs/observable/interval" {
 }
 declare module "rxjs/add/observable/interval" {
     import { interval as staticInterval } from "rxjs/observable/interval";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let interval: typeof staticInterval;
         }
@@ -1874,7 +1874,7 @@ declare module "rxjs/observable/merge" {
 }
 declare module "rxjs/add/observable/merge" {
     import { merge as mergeStatic } from "rxjs/observable/merge";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let merge: typeof mergeStatic;
         }
@@ -1922,7 +1922,7 @@ declare module "rxjs/operator/race" {
 }
 declare module "rxjs/add/observable/race" {
     import { raceStatic } from "rxjs/operator/race";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let race: typeof raceStatic;
         }
@@ -1982,7 +1982,7 @@ declare module "rxjs/observable/never" {
 }
 declare module "rxjs/add/observable/never" {
     import { never as staticNever } from "rxjs/observable/never";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let never: typeof staticNever;
         }
@@ -1994,7 +1994,7 @@ declare module "rxjs/observable/of" {
 }
 declare module "rxjs/add/observable/of" {
     import { of as staticOf } from "rxjs/observable/of";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let of: typeof staticOf;
         }
@@ -2019,7 +2019,7 @@ declare module "rxjs/operator/onErrorResumeNext" {
 }
 declare module "rxjs/add/observable/onErrorResumeNext" {
     import { onErrorResumeNextStatic } from "rxjs/operator/onErrorResumeNext";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let onErrorResumeNext: typeof onErrorResumeNextStatic;
         }
@@ -2081,7 +2081,7 @@ declare module "rxjs/observable/pairs" {
 }
 declare module "rxjs/add/observable/pairs" {
     import { pairs as staticPairs } from "rxjs/observable/pairs";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let pairs: typeof staticPairs;
         }
@@ -2143,7 +2143,7 @@ declare module "rxjs/observable/range" {
 }
 declare module "rxjs/add/observable/range" {
     import { range as staticRange } from "rxjs/observable/range";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let range: typeof staticRange;
         }
@@ -2172,7 +2172,7 @@ declare module "rxjs/observable/using" {
 }
 declare module "rxjs/add/observable/using" {
     import { using as staticUsing } from "rxjs/observable/using";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let using: typeof staticUsing;
         }
@@ -2255,7 +2255,7 @@ declare module "rxjs/observable/timer" {
 }
 declare module "rxjs/add/observable/timer" {
     import { timer as staticTimer } from "rxjs/observable/timer";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let timer: typeof staticTimer;
         }
@@ -2326,7 +2326,7 @@ declare module "rxjs/observable/zip" {
 }
 declare module "rxjs/add/observable/zip" {
     import { zip as zipStatic } from "rxjs/observable/zip";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let zip: typeof zipStatic;
         }
@@ -2518,7 +2518,7 @@ declare module "rxjs/observable/dom/ajax" {
 }
 declare module "rxjs/add/observable/dom/ajax" {
     import { AjaxCreationMethod } from "rxjs/observable/dom/AjaxObservable";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let ajax: AjaxCreationMethod;
         }
@@ -2728,7 +2728,7 @@ declare module "rxjs/observable/dom/webSocket" {
 }
 declare module "rxjs/add/observable/dom/webSocket" {
     import { webSocket as staticWebSocket } from "rxjs/observable/dom/webSocket";
-    module "Observable" {
+    module "rxjs/Observable" {
         namespace Observable {
             let webSocket: typeof staticWebSocket;
         }
@@ -2772,7 +2772,7 @@ declare module "rxjs/operator/buffer" {
 }
 declare module "rxjs/add/operator/buffer" {
     import { buffer } from "rxjs/operator/buffer";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             buffer: typeof buffer;
         }
@@ -2825,7 +2825,7 @@ declare module "rxjs/operator/bufferCount" {
 }
 declare module "rxjs/add/operator/bufferCount" {
     import { bufferCount } from "rxjs/operator/bufferCount";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             bufferCount: typeof bufferCount;
         }
@@ -2840,7 +2840,7 @@ declare module "rxjs/operator/bufferTime" {
 }
 declare module "rxjs/add/operator/bufferTime" {
     import { bufferTime } from "rxjs/operator/bufferTime";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             bufferTime: typeof bufferTime;
         }
@@ -2890,7 +2890,7 @@ declare module "rxjs/operator/bufferToggle" {
 }
 declare module "rxjs/add/operator/bufferToggle" {
     import { bufferToggle } from "rxjs/operator/bufferToggle";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             bufferToggle: typeof bufferToggle;
         }
@@ -2935,7 +2935,7 @@ declare module "rxjs/operator/bufferWhen" {
 }
 declare module "rxjs/add/operator/bufferWhen" {
     import { bufferWhen } from "rxjs/operator/bufferWhen";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             bufferWhen: typeof bufferWhen;
         }
@@ -3006,7 +3006,7 @@ declare module "rxjs/operator/catch" {
 }
 declare module "rxjs/add/operator/catch" {
     import { _catch } from "rxjs/operator/catch";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             catch: typeof _catch;
             _catch: typeof _catch;
@@ -3059,7 +3059,7 @@ declare module "rxjs/operator/combineAll" {
 }
 declare module "rxjs/add/operator/combineAll" {
     import { combineAll } from "rxjs/operator/combineAll";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             combineAll: typeof combineAll;
         }
@@ -3067,7 +3067,7 @@ declare module "rxjs/add/operator/combineAll" {
 }
 declare module "rxjs/add/operator/combineLatest" {
     import { combineLatest } from "rxjs/operator/combineLatest";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             combineLatest: typeof combineLatest;
         }
@@ -3075,7 +3075,7 @@ declare module "rxjs/add/operator/combineLatest" {
 }
 declare module "rxjs/add/operator/concat" {
     import { concat } from "rxjs/operator/concat";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             concat: typeof concat;
         }
@@ -3089,7 +3089,7 @@ declare module "rxjs/operator/concatAll" {
 }
 declare module "rxjs/add/operator/concatAll" {
     import { concatAll } from "rxjs/operator/concatAll";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             concatAll: typeof concatAll;
         }
@@ -3141,7 +3141,7 @@ declare module "rxjs/operator/concatMap" {
 }
 declare module "rxjs/add/operator/concatMap" {
     import { concatMap } from "rxjs/operator/concatMap";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             concatMap: typeof concatMap;
         }
@@ -3193,7 +3193,7 @@ declare module "rxjs/operator/concatMapTo" {
 }
 declare module "rxjs/add/operator/concatMapTo" {
     import { concatMapTo } from "rxjs/operator/concatMapTo";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             concatMapTo: typeof concatMapTo;
         }
@@ -3253,7 +3253,7 @@ declare module "rxjs/operator/count" {
 }
 declare module "rxjs/add/operator/count" {
     import { count } from "rxjs/operator/count";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             count: typeof count;
         }
@@ -3305,7 +3305,7 @@ declare module "rxjs/operator/dematerialize" {
 }
 declare module "rxjs/add/operator/dematerialize" {
     import { dematerialize } from "rxjs/operator/dematerialize";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             dematerialize: typeof dematerialize;
         }
@@ -3359,7 +3359,7 @@ declare module "rxjs/operator/debounce" {
 }
 declare module "rxjs/add/operator/debounce" {
     import { debounce } from "rxjs/operator/debounce";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             debounce: typeof debounce;
         }
@@ -3418,7 +3418,7 @@ declare module "rxjs/operator/debounceTime" {
 }
 declare module "rxjs/add/operator/debounceTime" {
     import { debounceTime } from "rxjs/operator/debounceTime";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             debounceTime: typeof debounceTime;
         }
@@ -3431,7 +3431,7 @@ declare module "rxjs/operator/defaultIfEmpty" {
 }
 declare module "rxjs/add/operator/defaultIfEmpty" {
     import { defaultIfEmpty } from "rxjs/operator/defaultIfEmpty";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             defaultIfEmpty: typeof defaultIfEmpty;
         }
@@ -3483,7 +3483,7 @@ declare module "rxjs/operator/delay" {
 }
 declare module "rxjs/add/operator/delay" {
     import { delay } from "rxjs/operator/delay";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             delay: typeof delay;
         }
@@ -3540,7 +3540,7 @@ declare module "rxjs/operator/delayWhen" {
 }
 declare module "rxjs/add/operator/delayWhen" {
     import { delayWhen } from "rxjs/operator/delayWhen";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             delayWhen: typeof delayWhen;
         }
@@ -3628,7 +3628,7 @@ declare module "rxjs/operator/distinct" {
 }
 declare module "rxjs/add/operator/distinct" {
     import { distinct } from "rxjs/operator/distinct";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             distinct: typeof distinct;
         }
@@ -3641,7 +3641,7 @@ declare module "rxjs/operator/distinctUntilChanged" {
 }
 declare module "rxjs/add/operator/distinctUntilChanged" {
     import { distinctUntilChanged } from "rxjs/operator/distinctUntilChanged";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             distinctUntilChanged: typeof distinctUntilChanged;
         }
@@ -3654,7 +3654,7 @@ declare module "rxjs/operator/distinctUntilKeyChanged" {
 }
 declare module "rxjs/add/operator/distinctUntilKeyChanged" {
     import { distinctUntilKeyChanged } from "rxjs/operator/distinctUntilKeyChanged";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             distinctUntilKeyChanged: typeof distinctUntilKeyChanged;
         }
@@ -3668,7 +3668,7 @@ declare module "rxjs/operator/do" {
 }
 declare module "rxjs/add/operator/do" {
     import { _do } from "rxjs/operator/do";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             do: typeof _do;
             _do: typeof _do;
@@ -3716,7 +3716,7 @@ declare module "rxjs/operator/exhaust" {
 }
 declare module "rxjs/add/operator/exhaust" {
     import { exhaust } from "rxjs/operator/exhaust";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             exhaust: typeof exhaust;
         }
@@ -3729,7 +3729,7 @@ declare module "rxjs/operator/exhaustMap" {
 }
 declare module "rxjs/add/operator/exhaustMap" {
     import { exhaustMap } from "rxjs/operator/exhaustMap";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             exhaustMap: typeof exhaustMap;
         }
@@ -3776,7 +3776,7 @@ declare module "rxjs/operator/expand" {
 }
 declare module "rxjs/add/operator/expand" {
     import { expand } from "rxjs/operator/expand";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             expand: typeof expand;
         }
@@ -3845,7 +3845,7 @@ declare module "rxjs/operator/elementAt" {
 }
 declare module "rxjs/add/operator/elementAt" {
     import { elementAt } from "rxjs/operator/elementAt";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             elementAt: typeof elementAt;
         }
@@ -3858,7 +3858,7 @@ declare module "rxjs/operator/filter" {
 }
 declare module "rxjs/add/operator/filter" {
     import { filter } from "rxjs/operator/filter";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             filter: typeof filter;
         }
@@ -3878,7 +3878,7 @@ declare module "rxjs/operator/finally" {
 }
 declare module "rxjs/add/operator/finally" {
     import { _finally } from "rxjs/operator/finally";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             finally: typeof _finally;
             _finally: typeof _finally;
@@ -3918,7 +3918,7 @@ declare module "rxjs/operator/find" {
 }
 declare module "rxjs/add/operator/find" {
     import { find } from "rxjs/operator/find";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             find: typeof find;
         }
@@ -3964,7 +3964,7 @@ declare module "rxjs/operator/findIndex" {
 }
 declare module "rxjs/add/operator/findIndex" {
     import { findIndex } from "rxjs/operator/findIndex";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             findIndex: typeof findIndex;
         }
@@ -3996,7 +3996,7 @@ declare module "rxjs/operator/first" {
 }
 declare module "rxjs/add/operator/first" {
     import { first } from "rxjs/operator/first";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             first: typeof first;
         }
@@ -4060,7 +4060,7 @@ declare module "rxjs/operator/groupBy" {
 }
 declare module "rxjs/add/operator/groupBy" {
     import { groupBy } from "rxjs/operator/groupBy";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             groupBy: typeof groupBy;
         }
@@ -4082,7 +4082,7 @@ declare module "rxjs/operator/ignoreElements" {
 }
 declare module "rxjs/add/operator/ignoreElements" {
     import { ignoreElements } from "rxjs/operator/ignoreElements";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             ignoreElements: typeof ignoreElements;
         }
@@ -4103,7 +4103,7 @@ declare module "rxjs/operator/isEmpty" {
 }
 declare module "rxjs/add/operator/isEmpty" {
     import { isEmpty } from "rxjs/operator/isEmpty";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             isEmpty: typeof isEmpty;
         }
@@ -4155,7 +4155,7 @@ declare module "rxjs/operator/audit" {
 }
 declare module "rxjs/add/operator/audit" {
     import { audit } from "rxjs/operator/audit";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             audit: typeof audit;
         }
@@ -4210,7 +4210,7 @@ declare module "rxjs/operator/auditTime" {
 }
 declare module "rxjs/add/operator/auditTime" {
     import { auditTime } from "rxjs/operator/auditTime";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             auditTime: typeof auditTime;
         }
@@ -4227,7 +4227,7 @@ declare module "rxjs/operator/last" {
 }
 declare module "rxjs/add/operator/last" {
     import { last } from "rxjs/operator/last";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             last: typeof last;
         }
@@ -4245,7 +4245,7 @@ declare module "rxjs/operator/let" {
 }
 declare module "rxjs/add/operator/let" {
     import { letProto } from "rxjs/operator/let";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             let: typeof letProto;
             letBind: typeof letProto;
@@ -4272,7 +4272,7 @@ declare module "rxjs/operator/every" {
 }
 declare module "rxjs/add/operator/every" {
     import { every } from "rxjs/operator/every";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             every: typeof every;
         }
@@ -4280,7 +4280,7 @@ declare module "rxjs/add/operator/every" {
 }
 declare module "rxjs/add/operator/map" {
     import { map } from "rxjs/operator/map";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             map: typeof map;
         }
@@ -4318,7 +4318,7 @@ declare module "rxjs/operator/mapTo" {
 }
 declare module "rxjs/add/operator/mapTo" {
     import { mapTo } from "rxjs/operator/mapTo";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             mapTo: typeof mapTo;
         }
@@ -4375,7 +4375,7 @@ declare module "rxjs/operator/materialize" {
 }
 declare module "rxjs/add/operator/materialize" {
     import { materialize } from "rxjs/operator/materialize";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             materialize: typeof materialize;
         }
@@ -4449,7 +4449,7 @@ declare module "rxjs/operator/max" {
 }
 declare module "rxjs/add/operator/max" {
     import { max } from "rxjs/operator/max";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             max: typeof max;
         }
@@ -4457,7 +4457,7 @@ declare module "rxjs/add/operator/max" {
 }
 declare module "rxjs/add/operator/merge" {
     import { merge } from "rxjs/operator/merge";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             merge: typeof merge;
         }
@@ -4465,7 +4465,7 @@ declare module "rxjs/add/operator/merge" {
 }
 declare module "rxjs/add/operator/mergeAll" {
     import { mergeAll } from "rxjs/operator/mergeAll";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             mergeAll: typeof mergeAll;
         }
@@ -4473,7 +4473,7 @@ declare module "rxjs/add/operator/mergeAll" {
 }
 declare module "rxjs/add/operator/mergeMap" {
     import { mergeMap } from "rxjs/operator/mergeMap";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             flatMap: typeof mergeMap;
             mergeMap: typeof mergeMap;
@@ -4482,7 +4482,7 @@ declare module "rxjs/add/operator/mergeMap" {
 }
 declare module "rxjs/add/operator/mergeMapTo" {
     import { mergeMapTo } from "rxjs/operator/mergeMapTo";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             flatMapTo: typeof mergeMapTo;
             mergeMapTo: typeof mergeMapTo;
@@ -4559,7 +4559,7 @@ declare module "rxjs/operator/mergeScan" {
 }
 declare module "rxjs/add/operator/mergeScan" {
     import { mergeScan } from "rxjs/operator/mergeScan";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             mergeScan: typeof mergeScan;
         }
@@ -4602,7 +4602,7 @@ declare module "rxjs/operator/min" {
 }
 declare module "rxjs/add/operator/min" {
     import { min } from "rxjs/operator/min";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             min: typeof min;
         }
@@ -4649,7 +4649,7 @@ declare module "rxjs/operator/multicast" {
 }
 declare module "rxjs/add/operator/multicast" {
     import { multicast } from "rxjs/operator/multicast";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             multicast: typeof multicast;
         }
@@ -4657,7 +4657,7 @@ declare module "rxjs/add/operator/multicast" {
 }
 declare module "rxjs/add/operator/observeOn" {
     import { observeOn } from "rxjs/operator/observeOn";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             observeOn: typeof observeOn;
         }
@@ -4665,7 +4665,7 @@ declare module "rxjs/add/operator/observeOn" {
 }
 declare module "rxjs/add/operator/onErrorResumeNext" {
     import { onErrorResumeNext } from "rxjs/operator/onErrorResumeNext";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             onErrorResumeNext: typeof onErrorResumeNext;
         }
@@ -4712,7 +4712,7 @@ declare module "rxjs/operator/pairwise" {
 }
 declare module "rxjs/add/operator/pairwise" {
     import { pairwise } from "rxjs/operator/pairwise";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             pairwise: typeof pairwise;
         }
@@ -4768,7 +4768,7 @@ declare module "rxjs/operator/partition" {
 }
 declare module "rxjs/add/operator/partition" {
     import { partition } from "rxjs/operator/partition";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             partition: typeof partition;
         }
@@ -4806,7 +4806,7 @@ declare module "rxjs/operator/pluck" {
 }
 declare module "rxjs/add/operator/pluck" {
     import { pluck } from "rxjs/operator/pluck";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             pluck: typeof pluck;
         }
@@ -4821,7 +4821,7 @@ declare module "rxjs/operator/publish" {
 }
 declare module "rxjs/add/operator/publish" {
     import { publish } from "rxjs/operator/publish";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             publish: typeof publish;
         }
@@ -4856,7 +4856,7 @@ declare module "rxjs/operator/publishBehavior" {
 }
 declare module "rxjs/add/operator/publishBehavior" {
     import { publishBehavior } from "rxjs/operator/publishBehavior";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             publishBehavior: typeof publishBehavior;
         }
@@ -4878,7 +4878,7 @@ declare module "rxjs/operator/publishReplay" {
 }
 declare module "rxjs/add/operator/publishReplay" {
     import { publishReplay } from "rxjs/operator/publishReplay";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             publishReplay: typeof publishReplay;
         }
@@ -4896,7 +4896,7 @@ declare module "rxjs/operator/publishLast" {
 }
 declare module "rxjs/add/operator/publishLast" {
     import { publishLast } from "rxjs/operator/publishLast";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             publishLast: typeof publishLast;
         }
@@ -4904,7 +4904,7 @@ declare module "rxjs/add/operator/publishLast" {
 }
 declare module "rxjs/add/operator/race" {
     import { race } from "rxjs/operator/race";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             race: typeof race;
         }
@@ -4912,7 +4912,7 @@ declare module "rxjs/add/operator/race" {
 }
 declare module "rxjs/add/operator/reduce" {
     import { reduce } from "rxjs/operator/reduce";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             reduce: typeof reduce;
         }
@@ -4936,7 +4936,7 @@ declare module "rxjs/operator/repeat" {
 }
 declare module "rxjs/add/operator/repeat" {
     import { repeat } from "rxjs/operator/repeat";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             repeat: typeof repeat;
         }
@@ -4962,7 +4962,7 @@ declare module "rxjs/operator/repeatWhen" {
 }
 declare module "rxjs/add/operator/repeatWhen" {
     import { repeatWhen } from "rxjs/operator/repeatWhen";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             repeatWhen: typeof repeatWhen;
         }
@@ -4990,7 +4990,7 @@ declare module "rxjs/operator/retry" {
 }
 declare module "rxjs/add/operator/retry" {
     import { retry } from "rxjs/operator/retry";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             retry: typeof retry;
         }
@@ -5016,7 +5016,7 @@ declare module "rxjs/operator/retryWhen" {
 }
 declare module "rxjs/add/operator/retryWhen" {
     import { retryWhen } from "rxjs/operator/retryWhen";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             retryWhen: typeof retryWhen;
         }
@@ -5062,7 +5062,7 @@ declare module "rxjs/operator/sample" {
 }
 declare module "rxjs/add/operator/sample" {
     import { sample } from "rxjs/operator/sample";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             sample: typeof sample;
         }
@@ -5111,7 +5111,7 @@ declare module "rxjs/operator/sampleTime" {
 }
 declare module "rxjs/add/operator/sampleTime" {
     import { sampleTime } from "rxjs/operator/sampleTime";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             sampleTime: typeof sampleTime;
         }
@@ -5125,7 +5125,7 @@ declare module "rxjs/operator/scan" {
 }
 declare module "rxjs/add/operator/scan" {
     import { scan } from "rxjs/operator/scan";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             scan: typeof scan;
         }
@@ -5216,7 +5216,7 @@ declare module "rxjs/operator/sequenceEqual" {
 }
 declare module "rxjs/add/operator/sequenceEqual" {
     import { sequenceEqual } from "rxjs/operator/sequenceEqual";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             sequenceEqual: typeof sequenceEqual;
         }
@@ -5240,7 +5240,7 @@ declare module "rxjs/operator/share" {
 }
 declare module "rxjs/add/operator/share" {
     import { share } from "rxjs/operator/share";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             share: typeof share;
         }
@@ -5268,7 +5268,7 @@ declare module "rxjs/operator/single" {
 }
 declare module "rxjs/add/operator/single" {
     import { single } from "rxjs/operator/single";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             single: typeof single;
         }
@@ -5291,7 +5291,7 @@ declare module "rxjs/operator/skip" {
 }
 declare module "rxjs/add/operator/skip" {
     import { skip } from "rxjs/operator/skip";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             skip: typeof skip;
         }
@@ -5315,7 +5315,7 @@ declare module "rxjs/operator/skipUntil" {
 }
 declare module "rxjs/add/operator/skipUntil" {
     import { skipUntil } from "rxjs/operator/skipUntil";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             skipUntil: typeof skipUntil;
         }
@@ -5339,7 +5339,7 @@ declare module "rxjs/operator/skipWhile" {
 }
 declare module "rxjs/add/operator/skipWhile" {
     import { skipWhile } from "rxjs/operator/skipWhile";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             skipWhile: typeof skipWhile;
         }
@@ -5358,7 +5358,7 @@ declare module "rxjs/operator/startWith" {
 }
 declare module "rxjs/add/operator/startWith" {
     import { startWith } from "rxjs/operator/startWith";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             startWith: typeof startWith;
         }
@@ -5493,7 +5493,7 @@ declare module "rxjs/operator/subscribeOn" {
 }
 declare module "rxjs/add/operator/subscribeOn" {
     import { subscribeOn } from "rxjs/operator/subscribeOn";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             subscribeOn: typeof subscribeOn;
         }
@@ -5547,7 +5547,7 @@ declare module "rxjs/operator/switch" {
 }
 declare module "rxjs/add/operator/switch" {
     import { _switch } from "rxjs/operator/switch";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             switch: typeof _switch;
             _switch: typeof _switch;
@@ -5561,7 +5561,7 @@ declare module "rxjs/operator/switchMap" {
 }
 declare module "rxjs/add/operator/switchMap" {
     import { switchMap } from "rxjs/operator/switchMap";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             switchMap: typeof switchMap;
         }
@@ -5574,7 +5574,7 @@ declare module "rxjs/operator/switchMapTo" {
 }
 declare module "rxjs/add/operator/switchMapTo" {
     import { switchMapTo } from "rxjs/operator/switchMapTo";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             switchMapTo: typeof switchMapTo;
         }
@@ -5619,7 +5619,7 @@ declare module "rxjs/operator/take" {
 }
 declare module "rxjs/add/operator/take" {
     import { take } from "rxjs/operator/take";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             take: typeof take;
         }
@@ -5667,7 +5667,7 @@ declare module "rxjs/operator/takeLast" {
 }
 declare module "rxjs/add/operator/takeLast" {
     import { takeLast } from "rxjs/operator/takeLast";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             takeLast: typeof takeLast;
         }
@@ -5712,7 +5712,7 @@ declare module "rxjs/operator/takeUntil" {
 }
 declare module "rxjs/add/operator/takeUntil" {
     import { takeUntil } from "rxjs/operator/takeUntil";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             takeUntil: typeof takeUntil;
         }
@@ -5760,7 +5760,7 @@ declare module "rxjs/operator/takeWhile" {
 }
 declare module "rxjs/add/operator/takeWhile" {
     import { takeWhile } from "rxjs/operator/takeWhile";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             takeWhile: typeof takeWhile;
         }
@@ -5810,7 +5810,7 @@ declare module "rxjs/operator/throttle" {
 }
 declare module "rxjs/add/operator/throttle" {
     import { throttle } from "rxjs/operator/throttle";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             throttle: typeof throttle;
         }
@@ -5862,7 +5862,7 @@ declare module "rxjs/operator/throttleTime" {
 }
 declare module "rxjs/add/operator/throttleTime" {
     import { throttleTime } from "rxjs/operator/throttleTime";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             throttleTime: typeof throttleTime;
         }
@@ -5886,7 +5886,7 @@ declare module "rxjs/operator/timeInterval" {
 }
 declare module "rxjs/add/operator/timeInterval" {
     import { timeInterval } from "rxjs/operator/timeInterval";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             timeInterval: typeof timeInterval;
         }
@@ -5918,7 +5918,7 @@ declare module "rxjs/operator/timeout" {
 }
 declare module "rxjs/add/operator/timeout" {
     import { timeout } from "rxjs/operator/timeout";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             timeout: typeof timeout;
         }
@@ -5932,7 +5932,7 @@ declare module "rxjs/operator/timeoutWith" {
 }
 declare module "rxjs/add/operator/timeoutWith" {
     import { timeoutWith } from "rxjs/operator/timeoutWith";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             timeoutWith: typeof timeoutWith;
         }
@@ -5956,7 +5956,7 @@ declare module "rxjs/operator/timestamp" {
 }
 declare module "rxjs/add/operator/timestamp" {
     import { timestamp } from "rxjs/operator/timestamp";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             timestamp: typeof timestamp;
         }
@@ -5973,7 +5973,7 @@ declare module "rxjs/operator/toArray" {
 }
 declare module "rxjs/add/operator/toArray" {
     import { toArray } from "rxjs/operator/toArray";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             toArray: typeof toArray;
         }
@@ -5986,7 +5986,7 @@ declare module "rxjs/operator/toPromise" {
 }
 declare module "rxjs/add/operator/toPromise" {
     import { toPromise } from "rxjs/operator/toPromise";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             toPromise: typeof toPromise;
         }
@@ -6034,7 +6034,7 @@ declare module "rxjs/operator/window" {
 }
 declare module "rxjs/add/operator/window" {
     import { window } from "rxjs/operator/window";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             window: typeof window;
         }
@@ -6094,7 +6094,7 @@ declare module "rxjs/operator/windowCount" {
 }
 declare module "rxjs/add/operator/windowCount" {
     import { windowCount } from "rxjs/operator/windowCount";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             windowCount: typeof windowCount;
         }
@@ -6169,7 +6169,7 @@ declare module "rxjs/operator/windowTime" {
 }
 declare module "rxjs/add/operator/windowTime" {
     import { windowTime } from "rxjs/operator/windowTime";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             windowTime: typeof windowTime;
         }
@@ -6222,7 +6222,7 @@ declare module "rxjs/operator/windowToggle" {
 }
 declare module "rxjs/add/operator/windowToggle" {
     import { windowToggle } from "rxjs/operator/windowToggle";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             windowToggle: typeof windowToggle;
         }
@@ -6272,7 +6272,7 @@ declare module "rxjs/operator/windowWhen" {
 }
 declare module "rxjs/add/operator/windowWhen" {
     import { windowWhen } from "rxjs/operator/windowWhen";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             windowWhen: typeof windowWhen;
         }
@@ -6297,7 +6297,7 @@ declare module "rxjs/operator/withLatestFrom" {
 }
 declare module "rxjs/add/operator/withLatestFrom" {
     import { withLatestFrom } from "rxjs/operator/withLatestFrom";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             withLatestFrom: typeof withLatestFrom;
         }
@@ -6305,7 +6305,7 @@ declare module "rxjs/add/operator/withLatestFrom" {
 }
 declare module "rxjs/add/operator/zip" {
     import { zipProto } from "rxjs/operator/zip";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             zip: typeof zipProto;
         }
@@ -6323,7 +6323,7 @@ declare module "rxjs/operator/zipAll" {
 }
 declare module "rxjs/add/operator/zipAll" {
     import { zipAll } from "rxjs/operator/zipAll";
-    module "Observable" {
+    module "rxjs/Observable" {
         interface Observable<T> {
             zipAll: typeof zipAll;
         }

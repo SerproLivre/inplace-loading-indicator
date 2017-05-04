@@ -38,22 +38,93 @@ monaco.editor.create(document.getElementById("container"), {
  */
 @Injectable()
 export class MonacoTypingsLoader {
-    typings: monaco.IDisposable[] = [];
-    constructor(private http: Http) {
+  typings: monaco.IDisposable[] = [];
+  constructor(private http: Http) {
+  }
+
+  loadTypings() {
+    ['common', 'platform-browser', 'platform-browser-dynamic',
+      'core', 'forms', 'http', 'router',
+      'compiler', 'rxjs'
+    ].forEach((packageName) => {
+      this.http.get(`https://unpkg.com/@pratico/angular4-typings@latest/typings/angular-${packageName}.d.ts`).subscribe((response) => {
+        monaco.languages.typescript.typescriptDefaults.addExtraLib(response.text(), `node_modules/@angular/${packageName}/index.ts`);
+      });
+    });
+
+    // monaco.languages.typescript.typescriptDefaults.addExtraLib(this.angularCore, '@types/angular/core/index.d.ts');
+    //monaco.languages.typescript.typescriptDefaults.addExtraLib(this.packageJSON, 'node_modules/@angular/core/package.json');
+    //monaco.languages.typescript.typescriptDefaults.addExtraLib(this.angularCoreDts, 'node_modules/@angular/core/core.d.ts');
+  }
+
+  get packageJSON() {
+    return `
+      {
+  "name": "@angular/core",
+  "version": "4.0.3",
+  "description": "Angular - the core framework",
+  "main": "./bundles/core.umd.js",
+  "module": "./@angular/core.es5.js",
+  "es2015": "./@angular/core.js",
+  "typings": "./core.d.ts",
+  "author": "angular",
+  "license": "MIT",
+  "peerDependencies": {
+    "rxjs": "^5.0.1",
+    "zone.js": "^0.8.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular.git"
+  }
+}
+
+      `;
+  }
+
+  get angularCoreDts() {
+    return `export interface Directive {
+        selector?: string;
+        inputs?: string[];
+        outputs?: string[];
+        host?: {[key: string]: string};
+        providers?: any[];
+        exportAs?: string;
+        queries?: {[key: string]: any};
     }
 
-    loadTypings() {
-        ['common', 'platform-browser', 'platform-browser-dynamic', 'core', 'forms', 'http', 'router', 'compiler'].forEach((packageName) => {
-            this.http.get(`https://unpkg.com/@pratico/angular4-typings@1.0.2/typings/angular-${packageName}.d.ts`).subscribe((response) => {
-                monaco.languages.typescript.typescriptDefaults.addExtraLib(response.text(), `node_modules/@angular/${packageName}/index.ts`);
-            });
-        });
-        // monaco.languages.typescript.typescriptDefaults.addExtraLib(this.angularCore, '@types/angular/core/index.d.ts');
+    export interface Component extends Directive {
+        moduleId?: string;
+        template?: string;
+        templateUrl?: string;
+        styles?: string[];
+        styleUrls?: string[];
+        changeDetection?: any;
+        viewProviders?: any[];
+        animations?: any[];
+        encapsulation?: any;
+        interpolation?: [string, string];
+        entryComponents?: any[];
     }
 
+    //Decorators
+    export function Directive(settings: Directive) : any;
+    export function Component(settings: Component) : any;
+    export function Injectable() : any;
 
-    get angularCore() {
-        return `
+
+    export function enableProdMode(): void;
+    export abstract class OnInit {
+        ngOnInit(): void;
+    }
+
+    export abstract class OnDestroy {
+        ngOnDestroy(): void;
+    }`;
+  }
+
+  get angularCore() {
+    return `
 declare var module: any;
 
 declare module "@angular/core" {
@@ -97,11 +168,11 @@ declare module "@angular/core" {
         ngOnDestroy(): void;
     }
 }`;
-    }
+  }
 
 
-    get angularIndex() {
-        return `
+  get angularIndex() {
+    return `
     export interface Directive {
         selector?: string;
         inputs?: string[];
@@ -140,5 +211,5 @@ declare module "@angular/core" {
     export abstract class OnDestroy {
         ngOnDestroy(): void;
     }`;
-    }
+  }
 }
