@@ -23,14 +23,17 @@ export class CjsTypescriptBuilder extends BuilderBase {
 
     this.shellExec(<ShellExecOptions>{
       command: 'yarn install',
+      global: true,
       label: 'Installing dependencies...',
       okText: 'Dependencies installed.',
       errorLabel: 'Error installing dependencies'
     });
   }
   private compileTs() {
+    let tsConfigFilePath = path.join(this.packagePath, this.tsConfigPath);
     this.shellExec(<ShellExecOptions>{
-      command: `${path.join(this.packagePath, 'node_modules/.bin/tsc')} -p ${path.join(this.packagePath, this.tsConfigPath)}`,
+      command: 'tsc',
+      arguments: `-p ${tsConfigFilePath}`,
       label: 'Starting typescript compilation...',
       okText: 'Typescript build is OK.',
       errorLabel: 'Error transpiling typescript'
@@ -38,9 +41,11 @@ export class CjsTypescriptBuilder extends BuilderBase {
   }
 
   private tsLint() {
-    if (fs.existsSync(path.join(this.packagePath, 'tslint.json'))) {
+    const tsLintConfigFilePath = path.join(this.packagePath, 'tslint.json');
+    if (fs.existsSync(tsLintConfigFilePath)) {
       this.shellExec(<ShellExecOptions>{
-        command: `${path.join(this.packagePath, 'node_modules/.bin/tslint')}`,
+        command: 'tslint',
+        arguments: `-c ${tsLintConfigFilePath}`,
         label: 'checking code style and rules...',
         okText: 'Code style and rules is Ok. Good job!',
         errorLabel: 'Error checking code style'

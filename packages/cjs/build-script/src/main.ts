@@ -15,6 +15,7 @@
 
 import shelljs = require('shelljs');
 import chalk = require('chalk');
+import inquirer = require('inquirer');
 // import fs = require('fs');
 // import path = require('path');
 // import Template = require('template-js');
@@ -42,6 +43,18 @@ import chalk = require('chalk');
 import program = require('commander');
 import { BuilderFactory } from "./builder-factory";
 
+const projectPrompt = inquirer.prompt([
+  {
+    name: 'packageType',
+    message: 'What are you building?',
+    type: 'list',
+    choices: [
+      { name: 'A Angular X Library', value: 'umd' },
+      { name: 'Just a simple CommonJs project', value: 'cjs' },
+    ]
+  }
+]);
+
 let cmdName = null;
 
 program
@@ -50,9 +63,12 @@ program
   .description('builds a project')
   .action((type, cmd) => {
     cmdName = cmd.name();
-    let projectbuilder = BuilderFactory.getInstanceFor(type);
-    shelljs.echo(chalk.blue(`Build Project: "Type > "${type}"`));
-    projectbuilder.run();
+    projectPrompt.then(answer => {
+      const packageType = answer['packageType'];
+      let projectbuilder = BuilderFactory.getInstanceFor(packageType);
+      shelljs.echo(chalk.blue(`Build Project: "Type > "${packageType}"`));
+      projectbuilder.run();
+    })
   });
 
 program.parse(process.argv);

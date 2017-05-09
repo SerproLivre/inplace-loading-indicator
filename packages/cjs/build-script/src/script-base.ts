@@ -13,6 +13,8 @@ import chalk = require('chalk');
  * @class ScriptBase
  */
 export abstract class ScriptBase {
+
+  protected packageName = '';
   protected packagePathVeryfied = false;
   packageJsonVeryfied = false;
 
@@ -23,6 +25,7 @@ export abstract class ScriptBase {
    * @memberOf ScriptBase
    */
   constructor(protected packagePath?: string) {
+    this.packageName = path.basename(packagePath);
     this.abortIfNotValid();
   }
 
@@ -77,10 +80,17 @@ export abstract class ScriptBase {
    * @memberOf ScriptBase
    */
   protected shellExec(options: ShellExecOptions) {
+    let command = options.global ? options.command : `${this.getCommandPath(options.command)}`;
+    if (options.arguments) {
+      command = `${command} ${options.arguments}`;
+    }
     shelljs.echo(chalk.blue(options.label));
-    const result = <shelljs.ExecOutputReturnValue>shelljs.exec(options.command, { silent: options.silent });
+    console.log(`COMMAND: ${command}`);
+    const result = <shelljs.ExecOutputReturnValue>shelljs.exec(command, { silent: options.silent });
     if (result.code !== 0) {
-      throw new ShellExecError((options.errorLabel ? options.errorLabel : `Error executing command ${options.command}`), options, result);
+      if (options.abortOnError) {
+      throw new ShellExecError((options.errorLabel ? options.errorLabel : `Error executing command ${command}`), options, result);
+      }
     }
     shelljs.echo(chalk.green(options.okText));
     return result;
@@ -98,6 +108,14 @@ export abstract class ScriptBase {
     this.packagePathVeryfied = shelljs.test('-d', this.packagePath);
   }
 
+  protected resolvePackageDistFile(filePath: string) {
+    return path.join(this.packagePath, 'dist', filePath);
+  }
+
+  protected resolvePackageFile(filePath: string) {
+    return path.join(this.packagePath, filePath);
+  }
+
   /**
    * Validates the package path checking it it is actual a npm package directory
    *
@@ -107,6 +125,14 @@ export abstract class ScriptBase {
   verifyPackage() {
     this.packagePathVeryfied = shelljs.test('-d', this.packagePath);
     this.packageJsonVeryfied = shelljs.test('-f', path.join(this.packagePath, 'package.json'));
+  }
+
+  checkFile(filePath: string) {
+    return shelljs.test('-f', filePath);
+  }
+
+  checDirectory(directoryPath: string) {
+    return shelljs.test('-d', directoryPath);
   }
 
   /**
@@ -120,6 +146,14 @@ export abstract class ScriptBase {
     if (!this.isValid()) {
       throw new Error(this.getNonValidMessage());
     }
+  }
+
+  protected resolveScriptBuildPath(filePath: string) {
+    return path.join(__dirname, '../', filePath);
+  }
+
+  protected getCommandPath(command: string): string {
+    return this.resolveScriptBuildPath(`./node_modules/.bin/${command}`);
   }
 
   protected getNonValidMessage() {

@@ -8,7 +8,7 @@ export interface Builder {
   run();
 }
 
-export abstract class BuilderBase extends ScriptBase implements Builder  {
+export abstract class BuilderBase extends ScriptBase implements Builder {
 
   protected packagePathVeryfied = false;
   packageJsonVeryfied = false;
@@ -47,12 +47,14 @@ export abstract class BuilderBase extends ScriptBase implements Builder  {
 
   private cleanDist() {
     this.shellExec(<ShellExecOptions>{
-      command: `${path.join(this.packagePath, './node_modules/.bin/rimraf')} ${this.getDistDirectory()}`,
+      command: 'rimraf',
+      arguments: this.getDistDirectory(),
       label: 'Removing dist folder...',
       okText: 'Dist directory removed.',
       errorLabel: 'Error removing dist folder.'
     });
   }
+
 
 
 }

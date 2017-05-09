@@ -13,6 +13,12 @@ export class ShellExecOptions {
    * @memberOf ShellExecOptions
    */
   command: string;
+
+  abortOnError?: boolean = true;
+
+  arguments?: string;
+
+  global?: boolean = false;
   /**
    * The label which will be exhibited in the command line
    *
