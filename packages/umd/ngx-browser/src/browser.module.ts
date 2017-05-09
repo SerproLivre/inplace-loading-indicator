@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { WindowRef } from './services/window-ref.service';
+import { UUIDGenerator } from './services/uuid-generator.service';
 
 
 export const defaultWindow = window;
@@ -14,7 +15,8 @@ export const PRATICO_BROWSER_MODULE_PROVIDERS = [
   {
     provide: WindowRef,
     useFactory: buildWindowProvider
-  }
+  },
+  UUIDGenerator
 ];
 
 

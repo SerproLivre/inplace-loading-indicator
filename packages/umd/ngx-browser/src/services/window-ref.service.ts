@@ -9,6 +9,7 @@ export class WindowRef {
 
   private _window: any;
   constructor() {
+
   }
 
   private get window(): Window {
@@ -45,4 +46,16 @@ export class WindowRef {
       y: y
     });
   }
+
+  setCustomData(key: string, data: any) {
+    if (!this.nativeWindow['pratico-custom-data']) {
+      this.nativeWindow['pratico-custom-data'] = {};
+    }
+    this.nativeWindow['pratico-custom-data'][key] = data;
+  }
+
+  getCustomData<T>(key: string): T {
+    return this.nativeWindow['pratico-custom-data'] ? this.nativeWindow['pratico-custom-data'][key] : null;
+  }
+
 }

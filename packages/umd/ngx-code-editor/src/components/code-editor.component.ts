@@ -10,6 +10,8 @@ import * as _ from 'lodash';
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit {
 
+  @Input() id: String = `editor-${}`;
+
   @ViewChild('editor') editorContent: ElementRef;
 
   @Input() fileName: string;
@@ -17,6 +19,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
 
   @Output() load: EventEmitter<void> = new EventEmitter<void>();
   @Output() save: EventEmitter<void> = new EventEmitter<void>();
+  @Output() changed: EventEmitter<string> = new EventEmitter<string>();
 
   private _defaultWidth = '800px';
   private _width: string = null;
@@ -47,9 +50,11 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
     const myDiv: HTMLDivElement = this.editorContent.nativeElement;
 
 
-    this.windowRef.nativeWindow.PRATICO_EDITOR = monaco.editor.create(myDiv, {
+    const monacoEditor = monaco.editor.create(myDiv, {
       model: monaco.editor.createModel(this.codeManager.getCode(this.fileName), this.language, monaco.Uri.parse('file:///script.ts'))
     });
+
+    this.windowRef.setCustomData('')
 
     // this.typingsLoader.loadTypings();
 
